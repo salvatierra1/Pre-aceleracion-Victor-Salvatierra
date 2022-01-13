@@ -33,4 +33,6 @@ public class PersonajeEntity {
             fetch  = FetchType.LAZY
     )
     private List<PeliculaEntity> peliculas = new ArrayList<>();
+
+    private int num;
 }

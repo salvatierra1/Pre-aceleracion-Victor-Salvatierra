@@ -22,6 +22,7 @@ public class PeliculaEntity {
 
     private String titulo;
 
+
     private LocalDate fechaCreacion;
 
     private int calificacion;
