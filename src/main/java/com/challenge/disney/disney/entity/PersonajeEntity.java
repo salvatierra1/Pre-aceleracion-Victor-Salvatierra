@@ -2,20 +2,27 @@ package com.challenge.disney.disney.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table (name = "personaje")
-@Getter
 @Setter
+@Getter
+@Table (name = "personaje")
+@SQLDelete(sql = "UPDATE personaje SET deleted = true WHERE id=?")
+@Where(clause = "deleted = false")
 public class PersonajeEntity {
 
+    //=== Atributos ===
     @Id
     @GeneratedValue (strategy = GenerationType.SEQUENCE)
     private Long id;
+
+    private boolean deleted = Boolean.FALSE;
 
     private String imagen;
 
@@ -27,12 +34,12 @@ public class PersonajeEntity {
 
     private String historia;
 
+
+    //=== Tiene muchas peliculas ===
     @ManyToMany(
-            mappedBy = "personaje",
-            cascade = CascadeType.ALL,
+            mappedBy = "personajes",
             fetch  = FetchType.LAZY
     )
     private List<PeliculaEntity> peliculas = new ArrayList<>();
 
-    private int num;
 }
