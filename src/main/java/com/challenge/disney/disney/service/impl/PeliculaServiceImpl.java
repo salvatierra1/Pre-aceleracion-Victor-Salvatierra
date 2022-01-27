@@ -1,9 +1,7 @@
 package com.challenge.disney.disney.service.impl;
 
-import com.challenge.disney.disney.dto.PeliculaBasicDTO;
 import com.challenge.disney.disney.dto.PeliculaDTO;
 import com.challenge.disney.disney.dto.PeliculaFiltersDTO;
-import com.challenge.disney.disney.entity.GeneroEntity;
 import com.challenge.disney.disney.entity.PeliculaEntity;
 import com.challenge.disney.disney.mapper.PeliculaMapper;
 import com.challenge.disney.disney.repository.GeneroRepository;
@@ -42,18 +40,9 @@ public class PeliculaServiceImpl implements PeliculaService {
     //=== Post ===
     @Override
     public PeliculaDTO save(PeliculaDTO dto) {
-        GeneroEntity generoEncontrado = generoRepository.getById(dto.getGeneroId());
-        PeliculaEntity peliculaEnt = peliculaMapper.toEntity(dto, generoEncontrado);
+        PeliculaEntity peliculaEnt = peliculaMapper.toEntity(dto);
         PeliculaEntity peliculaSaved = peliculaRepository.save(peliculaEnt);
         PeliculaDTO resultado = peliculaMapper.peliculaEntity2Dto(peliculaSaved, false);
-        return resultado;
-    }
-
-    //=== Get ===
-    @Override
-    public List<PeliculaDTO> traerPeliculas() {
-        List<PeliculaEntity>listaEntity = peliculaRepository.findAll();
-        List<PeliculaDTO>resultado = peliculaMapper.peliculaEntityList2DtoList(listaEntity, false);
         return resultado;
     }
 
@@ -82,18 +71,10 @@ public class PeliculaServiceImpl implements PeliculaService {
         return peliculaEntity.get();
     }
 
-    //=== Basic ===
-    @Override
-    public List<PeliculaBasicDTO> traerPeliculasBasic() {
-        List<PeliculaEntity>listaEntity = peliculaRepository.findAll();
-        List<PeliculaBasicDTO>resultado = peliculaMapper.peliculaBasicEntityList2DtoList(listaEntity);
-        return resultado;
-    }
-
     //=== Filters ===
     @Override
-    public List<PeliculaDTO> traerPorFiltros(String titulo, Set<Long> genero, String order, String date) {
-        PeliculaFiltersDTO peliculaFiltersDTO = new PeliculaFiltersDTO(titulo, genero, order, date);
+    public List<PeliculaDTO> traerPorFiltros(String titulo, Set<Long> genero, String order, String date, String imagen) {
+        PeliculaFiltersDTO peliculaFiltersDTO = new PeliculaFiltersDTO(titulo, genero, order, date, imagen);
         List<PeliculaEntity> peliculaEntityList = peliculaRepository.findAll(peliculaSpecification.obtenerFiltro(peliculaFiltersDTO));
         List<PeliculaDTO> resultado = peliculaMapper.peliculaEntityList2DtoList(peliculaEntityList, true);
         return resultado;

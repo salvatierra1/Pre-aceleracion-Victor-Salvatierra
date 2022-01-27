@@ -10,16 +10,11 @@ public interface PersonajeService {
 
     PersonajeDTO save(PersonajeDTO dto);
 
-    List<PersonajeDTO> traerPersonajes();
-
     void delete(Long id);
 
     PersonajeDTO editPersonaje(Long id, PersonajeDTO edit);
 
-    List<PersonajeBasicDTO> traerPersonajesBasic();
-
-    PersonajeDTO traerDetalles(Long id);
-
     List<PersonajeDTO> traerPorFiltros(String nombre, Integer edad, Set<Long> peliculas);
 
+    List<PersonajeBasicDTO> traerPersonajesBasic();
 }

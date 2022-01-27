@@ -74,21 +74,6 @@ public class PersonajeServiceImpl implements PersonajeService {
         return personajeEntity.get();
     }
 
-    //=== Basic ===
-    @Override
-    public List<PersonajeBasicDTO> traerPersonajesBasic() {
-        List<PersonajeEntity>listaEntity = personajeRepository.findAll();
-        List<PersonajeBasicDTO>resultado = personajeMapper.personajeBasicEntityList2DtoList(listaEntity);
-        return resultado;
-    }
-
-    //=== Details ===
-    @Override
-    public PersonajeDTO traerDetalles(Long id) {
-        PersonajeEntity personajeEncontrado = personajeRepository.getById(id);
-        PersonajeDTO resultado = personajeMapper.personajeEntity2Dto(personajeEncontrado, true);
-        return resultado;
-    }
 
     //=== Filters ===
     @Override
@@ -97,5 +82,12 @@ public class PersonajeServiceImpl implements PersonajeService {
         List<PersonajeEntity> entityList = this.personajeRepository.findAll(this.personajeSpecification.getFilters(filtersDTO));
         List<PersonajeDTO> resultadoDTO = this.personajeMapper.personajeEntityList2DtoList(entityList, true);
         return resultadoDTO;
+    }
+
+    @Override
+    public List<PersonajeBasicDTO> traerPersonajesBasic() {
+        List<PersonajeEntity>listaEntity = personajeRepository.findAll();
+        List<PersonajeBasicDTO>resultado = personajeMapper.personajeBasicEntityList2DtoList(listaEntity);
+        return resultado;
     }
 }

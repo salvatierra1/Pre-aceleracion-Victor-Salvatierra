@@ -55,14 +55,16 @@ public class PersonajeMapper {
         return dtoList;
     }
 
-    //=== BASIC ===
-    private PersonajeBasicDTO personajeBasicEntity2Dto(PersonajeEntity ent) {
-        PersonajeBasicDTO dto = new PersonajeBasicDTO();
-        dto.setNombre(ent.getNombre());
-        dto.setImagen(ent.getImagen());
-        return dto;
+
+    public List<PersonajeEntity> toEntityList(List<PersonajeDTO> personajesDTO) {
+        List<PersonajeEntity>personajeEntityList = new ArrayList<>();
+        for(PersonajeDTO personaje : personajesDTO){
+            personajeEntityList.add(this.personajeDTO2Entity(personaje));
+        }
+        return personajeEntityList;
     }
 
+    //=== Basic ===
     public List<PersonajeBasicDTO> personajeBasicEntityList2DtoList(List<PersonajeEntity> listaEntity) {
         List<PersonajeBasicDTO>dtoList = new ArrayList<>();
         for(PersonajeEntity ent : listaEntity){
@@ -71,11 +73,10 @@ public class PersonajeMapper {
         return dtoList;
     }
 
-    public List<PersonajeEntity> toEntityList(List<PersonajeDTO> personajesDTO) {
-        List<PersonajeEntity>personajeEntityList = new ArrayList<>();
-        for(PersonajeDTO personaje : personajesDTO){
-            personajeEntityList.add(this.personajeDTO2Entity(personaje));
-        }
-        return personajeEntityList;
+    private PersonajeBasicDTO personajeBasicEntity2Dto(PersonajeEntity ent) {
+        PersonajeBasicDTO dto = new PersonajeBasicDTO();
+        dto.setNombre(ent.getNombre());
+        dto.setImagen(ent.getImagen());
+        return dto;
     }
 }

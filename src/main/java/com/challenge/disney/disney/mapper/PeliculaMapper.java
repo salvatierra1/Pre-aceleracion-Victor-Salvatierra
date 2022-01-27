@@ -1,6 +1,5 @@
 package com.challenge.disney.disney.mapper;
 
-import com.challenge.disney.disney.dto.PeliculaBasicDTO;
 import com.challenge.disney.disney.dto.PeliculaDTO;
 import com.challenge.disney.disney.entity.GeneroEntity;
 import com.challenge.disney.disney.entity.PeliculaEntity;
@@ -23,7 +22,9 @@ public class PeliculaMapper {
     }
 
     //=== DTO --> Entity
-    public PeliculaEntity toEntity(PeliculaDTO dto, GeneroEntity generoEntity){
+    public PeliculaEntity toEntity(PeliculaDTO dto){
+        GeneroEntity generoEntity = new GeneroEntity();
+        generoEntity.setId(dto.getGeneroId());
         PeliculaEntity peliculaEntity = new PeliculaEntity();
         peliculaEntity.setImagen(dto.getImagen());
         peliculaEntity.setTitulo(dto.getTitulo());
@@ -61,23 +62,6 @@ public class PeliculaMapper {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(stringDate, formato);
         return date;
-    }
-
-    //=== Basic ===
-    public List<PeliculaBasicDTO> peliculaBasicEntityList2DtoList(List<PeliculaEntity> listaEntity) {
-        List<PeliculaBasicDTO>dtoList = new ArrayList<>();
-        for(PeliculaEntity ent : listaEntity){
-            dtoList.add(this.peliculaBasicEntity2Dto(ent));
-        }
-        return dtoList;
-    }
-
-    private PeliculaBasicDTO peliculaBasicEntity2Dto(PeliculaEntity ent) {
-        PeliculaBasicDTO peliculaBasicDTO = new PeliculaBasicDTO();
-        peliculaBasicDTO.setImagen(ent.getImagen());
-        peliculaBasicDTO.setTitulo(ent.getTitulo());
-        peliculaBasicDTO.setFechaCreacion(ent.getFechaCreacion().toString());
-        return peliculaBasicDTO;
     }
 
 }

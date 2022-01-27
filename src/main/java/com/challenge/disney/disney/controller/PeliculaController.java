@@ -1,6 +1,5 @@
 package com.challenge.disney.disney.controller;
 
-import com.challenge.disney.disney.dto.PeliculaBasicDTO;
 import com.challenge.disney.disney.dto.PeliculaDTO;
 import com.challenge.disney.disney.service.PeliculaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import java.util.Set;
 @RequestMapping("movies")
 public class PeliculaController {
 
-
     //=== Instancia de Service ===
     private PeliculaService peliculaService;
     public PeliculaController(@Autowired @Lazy PeliculaService peliculaService) {
@@ -30,20 +28,6 @@ public class PeliculaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(peliculaGuardada);
     }
 
-    //=== Get ===
-    @GetMapping("/all")
-    public ResponseEntity<List<PeliculaDTO>> obtenerPeliculas(){
-        List<PeliculaDTO> peliculaDTOList = peliculaService.traerPeliculas();
-        return ResponseEntity.status(HttpStatus.OK).body(peliculaDTOList);
-    }
-
-    //=== Get ===
-    @GetMapping("/basic")
-    public ResponseEntity<List<PeliculaBasicDTO>> obtenerPeliculasBasic(){
-        List<PeliculaBasicDTO> peliculasBasic = peliculaService.traerPeliculasBasic();
-        return ResponseEntity.status(HttpStatus.OK).body(peliculasBasic);
-    }
-
     //=== Delete ===
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
@@ -52,7 +36,7 @@ public class PeliculaController {
     }
 
     //=== Put ===
-    @PutMapping("/edit/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<PeliculaDTO> editarPelicula(@PathVariable Long id, @RequestBody PeliculaDTO edit){
         PeliculaDTO peliculaEditada = peliculaService.editPelicula(id, edit);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(peliculaEditada);
@@ -62,11 +46,12 @@ public class PeliculaController {
     @GetMapping
     public ResponseEntity<List<PeliculaDTO>> detallesPorFiltros(
             @RequestParam(required = false)String titulo,
+            @RequestParam(required = false)String imagen,
             @RequestParam(required = false) String date,
             @RequestParam(required = false) Set<Long> genero,
             @RequestParam(required  = false, defaultValue = "ASC") String order
     ){
-        List<PeliculaDTO> peliculaDTOList = peliculaService.traerPorFiltros(titulo, genero, order, date);
+        List<PeliculaDTO> peliculaDTOList = peliculaService.traerPorFiltros(titulo, genero, order, date, imagen);
         return ResponseEntity.status(HttpStatus.OK).body(peliculaDTOList);
     }
 

@@ -55,7 +55,7 @@ public class PeliculaEntity {
     private List<PersonajeEntity> personajes = new ArrayList<>();
 
     //=== Tiene un Genero ==
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private GeneroEntity genero;
 
 }

@@ -23,33 +23,12 @@ public class PersonajeController {
         this.personajeService = personajeService;
     }
 
-    //=== Get ===
-    @GetMapping("/basic/characters")
-    public ResponseEntity<List<PersonajeBasicDTO>> obtenerPersonajesBasic(){
-        List<PersonajeBasicDTO> personajesBasic = personajeService.traerPersonajesBasic();
-        return ResponseEntity.status(HttpStatus.OK).body(personajesBasic);
-
-    }
 
     //=== Post ===
     @PostMapping
     public ResponseEntity<PersonajeDTO> save(@RequestBody PersonajeDTO personaje){
         PersonajeDTO personajeGuardado = personajeService.save(personaje);
         return ResponseEntity.status(HttpStatus.CREATED).body(personajeGuardado);
-    }
-
-    //=== Get ===
-    @GetMapping("/all")
-    public ResponseEntity<List<PersonajeDTO>> obtenerPersonajes(){
-        List<PersonajeDTO> personajeDTOList = personajeService.traerPersonajes();
-        return ResponseEntity.status(HttpStatus.OK).body(personajeDTOList);
-    }
-
-    //=== Get ===
-    @GetMapping("/details/{id}")
-    public ResponseEntity<PersonajeDTO> detallesDePersonaje(@PathVariable Long id){
-        PersonajeDTO personajeDTO = personajeService.traerDetalles(id);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(personajeDTO);
     }
 
     //=== Delete ===
@@ -64,6 +43,14 @@ public class PersonajeController {
     public ResponseEntity<PersonajeDTO> editarPersonaje(@PathVariable Long id, @RequestBody PersonajeDTO edit){
         PersonajeDTO editarPer = personajeService.editPersonaje(id, edit);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(editarPer);
+    }
+
+    //=== Get ===
+    @GetMapping("/all")
+    public ResponseEntity<List<PersonajeBasicDTO>> obtenerPersonajesBasic(){
+        List<PersonajeBasicDTO> personajesBasic = personajeService.traerPersonajesBasic();
+        return ResponseEntity.status(HttpStatus.OK).body(personajesBasic);
+
     }
 
     //=== Get --- Filters ===
