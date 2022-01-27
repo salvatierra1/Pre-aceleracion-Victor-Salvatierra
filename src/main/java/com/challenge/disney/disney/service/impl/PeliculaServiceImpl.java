@@ -1,4 +1,4 @@
-package com.challenge.disney.disney.auth.filter.service.impl;
+package com.challenge.disney.disney.service.impl;
 
 import com.challenge.disney.disney.dto.PeliculaDTO;
 import com.challenge.disney.disney.dto.PeliculaFiltersDTO;
@@ -7,7 +7,7 @@ import com.challenge.disney.disney.mapper.PeliculaMapper;
 import com.challenge.disney.disney.repository.GeneroRepository;
 import com.challenge.disney.disney.repository.PeliculaRepository;
 import com.challenge.disney.disney.repository.specifications.PeliculaSpecification;
-import com.challenge.disney.disney.auth.filter.service.PeliculaService;
+import com.challenge.disney.disney.service.PeliculaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;

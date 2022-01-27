@@ -3,7 +3,7 @@ package com.challenge.disney.disney.auth.service;
 import com.challenge.disney.disney.auth.dto.UserDTO;
 import com.challenge.disney.disney.auth.entity.UserEntity;
 import com.challenge.disney.disney.auth.repository.UserRepository;
-import com.challenge.disney.disney.auth.filter.service.EmailService;
+import com.challenge.disney.disney.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.User;
@@ -40,15 +40,13 @@ public class UserDetailsCustomService implements UserDetailsService {
     public boolean save(UserDTO userDTO){
 
         UserEntity userEntity = new UserEntity();
-
         userEntity.setUsername(userDTO.getUsername());
-        userEntity.setPassword(userDTO.getPassword());
-        //userEntity.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        userEntity.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         userEntity = this.userRepository.save(userEntity);
         if (userEntity != null){
             emailService.sendWelcomeEmailTo(userEntity.getUsername());
         }
         return userEntity != null;
     }
-
+    //
 }

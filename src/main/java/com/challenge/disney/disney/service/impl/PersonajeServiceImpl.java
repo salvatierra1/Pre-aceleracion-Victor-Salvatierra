@@ -1,4 +1,4 @@
-package com.challenge.disney.disney.auth.filter.service.impl;
+package com.challenge.disney.disney.service.impl;
 
 import com.challenge.disney.disney.dto.PersonajeBasicDTO;
 import com.challenge.disney.disney.dto.PersonajeDTO;
@@ -7,7 +7,7 @@ import com.challenge.disney.disney.entity.PersonajeEntity;
 import com.challenge.disney.disney.mapper.PersonajeMapper;
 import com.challenge.disney.disney.repository.PersonajeRepository;
 import com.challenge.disney.disney.repository.specifications.PersonajeSpecification;
-import com.challenge.disney.disney.auth.filter.service.PersonajeService;
+import com.challenge.disney.disney.service.PersonajeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;

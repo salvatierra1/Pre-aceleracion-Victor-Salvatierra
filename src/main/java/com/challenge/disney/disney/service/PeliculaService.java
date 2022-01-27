@@ -1,4 +1,4 @@
-package com.challenge.disney.disney.auth.filter.service;
+package com.challenge.disney.disney.service;
 
 import com.challenge.disney.disney.dto.PeliculaDTO;
 

@@ -1,7 +1,7 @@
 package com.challenge.disney.disney.controller;
 
 import com.challenge.disney.disney.dto.PeliculaDTO;
-import com.challenge.disney.disney.auth.filter.service.PeliculaService;
+import com.challenge.disney.disney.service.PeliculaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
