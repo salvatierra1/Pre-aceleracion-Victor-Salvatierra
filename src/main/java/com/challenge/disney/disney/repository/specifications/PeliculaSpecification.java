@@ -37,6 +37,16 @@ public class PeliculaSpecification {
                 );
             }
 
+            //=== Imagen ==
+            if (StringUtils.hasLength(peliculaFiltersDTO.getImagen())){
+                predicates.add(
+                        criteriaBuilder.like(
+                                criteriaBuilder.lower(root.get("imagen")),
+                                "%" + peliculaFiltersDTO.getImagen().toLowerCase() + "%"
+                        )
+                );
+            }
+
             //=== Date ===
             if (StringUtils.hasLength(peliculaFiltersDTO.getDate())){
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

@@ -1,6 +1,5 @@
 package com.challenge.disney.disney.service.impl;
 
-import com.challenge.disney.disney.dto.PersonajeBasicDTO;
 import com.challenge.disney.disney.dto.PersonajeDTO;
 import com.challenge.disney.disney.dto.PersonajeFiltersDTO;
 import com.challenge.disney.disney.entity.PersonajeEntity;
@@ -74,21 +73,6 @@ public class PersonajeServiceImpl implements PersonajeService {
         return personajeEntity.get();
     }
 
-    //=== Basic ===
-    @Override
-    public List<PersonajeBasicDTO> traerPersonajesBasic() {
-        List<PersonajeEntity>listaEntity = personajeRepository.findAll();
-        List<PersonajeBasicDTO>resultado = personajeMapper.personajeBasicEntityList2DtoList(listaEntity);
-        return resultado;
-    }
-
-    //=== Details ===
-    @Override
-    public PersonajeDTO traerDetalles(Long id) {
-        PersonajeEntity personajeEncontrado = personajeRepository.getById(id);
-        PersonajeDTO resultado = personajeMapper.personajeEntity2Dto(personajeEncontrado, true);
-        return resultado;
-    }
 
     //=== Filters ===
     @Override
