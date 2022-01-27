@@ -1,7 +1,8 @@
 package com.challenge.disney.disney.controller;
 
+import com.challenge.disney.disney.dto.PersonajeBasicDTO;
 import com.challenge.disney.disney.dto.PersonajeDTO;
-import com.challenge.disney.disney.service.PersonajeService;
+import com.challenge.disney.disney.auth.filter.service.PersonajeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,14 @@ public class PersonajeController {
     public ResponseEntity<PersonajeDTO> editarPersonaje(@PathVariable Long id, @RequestBody PersonajeDTO edit){
         PersonajeDTO editarPer = personajeService.editPersonaje(id, edit);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(editarPer);
+    }
+
+    //=== Get ===
+    @GetMapping("/all")
+    public ResponseEntity<List<PersonajeBasicDTO>> obtenerPersonajesBasic(){
+        List<PersonajeBasicDTO> personajesBasic = personajeService.traerPersonajesBasic();
+        return ResponseEntity.status(HttpStatus.OK).body(personajesBasic);
+
     }
 
     //=== Get --- Filters ===

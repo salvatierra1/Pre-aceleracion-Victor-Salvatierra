@@ -1,6 +1,7 @@
 package com.challenge.disney.disney.mapper;
 
 
+import com.challenge.disney.disney.dto.PersonajeBasicDTO;
 import com.challenge.disney.disney.dto.PersonajeDTO;
 import com.challenge.disney.disney.entity.PersonajeEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,21 @@ public class PersonajeMapper {
             personajeEntityList.add(this.personajeDTO2Entity(personaje));
         }
         return personajeEntityList;
+    }
+
+    //=== Basic ===
+    public List<PersonajeBasicDTO> personajeBasicEntityList2DtoList(List<PersonajeEntity> listaEntity) {
+        List<PersonajeBasicDTO>dtoList = new ArrayList<>();
+        for(PersonajeEntity ent : listaEntity){
+            dtoList.add(this.personajeBasicEntity2Dto(ent));
+        }
+        return dtoList;
+    }
+
+    private PersonajeBasicDTO personajeBasicEntity2Dto(PersonajeEntity ent) {
+        PersonajeBasicDTO dto = new PersonajeBasicDTO();
+        dto.setNombre(ent.getNombre());
+        dto.setImagen(ent.getImagen());
+        return dto;
     }
 }

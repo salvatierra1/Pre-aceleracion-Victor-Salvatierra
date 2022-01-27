@@ -1,5 +1,6 @@
-package com.challenge.disney.disney.service;
+package com.challenge.disney.disney.auth.filter.service;
 
+import com.challenge.disney.disney.dto.PersonajeBasicDTO;
 import com.challenge.disney.disney.dto.PersonajeDTO;
 
 import java.util.List;
@@ -15,4 +16,5 @@ public interface PersonajeService {
 
     List<PersonajeDTO> traerPorFiltros(String nombre, Integer edad, Set<Long> peliculas);
 
+    List<PersonajeBasicDTO> traerPersonajesBasic();
 }

@@ -1,4 +1,4 @@
-package com.challenge.disney.disney.service;
+package com.challenge.disney.disney.auth.filter.service;
 
 import com.challenge.disney.disney.dto.GeneroDTO;
 

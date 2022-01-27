@@ -1,12 +1,13 @@
-package com.challenge.disney.disney.service.impl;
+package com.challenge.disney.disney.auth.filter.service.impl;
 
+import com.challenge.disney.disney.dto.PersonajeBasicDTO;
 import com.challenge.disney.disney.dto.PersonajeDTO;
 import com.challenge.disney.disney.dto.PersonajeFiltersDTO;
 import com.challenge.disney.disney.entity.PersonajeEntity;
 import com.challenge.disney.disney.mapper.PersonajeMapper;
 import com.challenge.disney.disney.repository.PersonajeRepository;
 import com.challenge.disney.disney.repository.specifications.PersonajeSpecification;
-import com.challenge.disney.disney.service.PersonajeService;
+import com.challenge.disney.disney.auth.filter.service.PersonajeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -81,5 +82,12 @@ public class PersonajeServiceImpl implements PersonajeService {
         List<PersonajeEntity> entityList = this.personajeRepository.findAll(this.personajeSpecification.getFilters(filtersDTO));
         List<PersonajeDTO> resultadoDTO = this.personajeMapper.personajeEntityList2DtoList(entityList, true);
         return resultadoDTO;
+    }
+
+    @Override
+    public List<PersonajeBasicDTO> traerPersonajesBasic() {
+        List<PersonajeEntity>listaEntity = personajeRepository.findAll();
+        List<PersonajeBasicDTO>resultado = personajeMapper.personajeBasicEntityList2DtoList(listaEntity);
+        return resultado;
     }
 }

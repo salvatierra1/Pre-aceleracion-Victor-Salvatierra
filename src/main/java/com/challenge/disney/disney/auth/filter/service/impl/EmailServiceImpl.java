@@ -1,6 +1,6 @@
-package com.challenge.disney.disney.service.impl;
+package com.challenge.disney.disney.auth.filter.service.impl;
 
-import com.challenge.disney.disney.service.EmailService;
+import com.challenge.disney.disney.auth.filter.service.EmailService;
 import com.sendgrid.Method;
 import com.sendgrid.Request;
 import com.sendgrid.Response;
