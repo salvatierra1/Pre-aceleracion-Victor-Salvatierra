@@ -51,5 +51,4 @@ public class UserDetailsCustomService implements UserDetailsService {
         return userEntity != null;
     }
 
-
 }

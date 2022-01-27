@@ -36,15 +36,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userDetailsCustomService);
     }
-   /*@Bean
-    public PasswordEncoder passwordEncoder(){
+
+        /*
+        @Bean
+        public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
-    }*/
+        }
+        */
 
     @Bean
-   public PasswordEncoder passwordEncoder(){
-       return NoOpPasswordEncoder.getInstance();
-   }
+    public PasswordEncoder passwordEncoder(){
+        return NoOpPasswordEncoder.getInstance();
+    }
 
     @Override
     @Bean
