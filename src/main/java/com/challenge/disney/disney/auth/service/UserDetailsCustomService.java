@@ -2,7 +2,7 @@ package com.challenge.disney.disney.auth.service;
 
 import com.challenge.disney.disney.auth.dto.UserDTO;
 import com.challenge.disney.disney.auth.entity.UserEntity;
-import com.challenge.disney.disney.auth.repository.UserRepository;
+import com.challenge.disney.disney.repository.UserRepository;
 import com.challenge.disney.disney.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -48,5 +48,5 @@ public class UserDetailsCustomService implements UserDetailsService {
         }
         return userEntity != null;
     }
-    //
+
 }
