@@ -20,7 +20,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-
     private UserDetailsCustomService userDetailsCustomService;
 
     public SecurityConfiguration(@Autowired @Lazy UserDetailsCustomService userDetailsCustomService) {

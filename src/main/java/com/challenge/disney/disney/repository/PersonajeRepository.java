@@ -1,4 +1,4 @@
-package com.challenge.disney.disney.auth.repository;
+package com.challenge.disney.disney.repository;
 
 import com.challenge.disney.disney.entity.PersonajeEntity;
 
