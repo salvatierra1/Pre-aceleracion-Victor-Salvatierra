@@ -1,4 +1,4 @@
-package com.challenge.disney.disney.auth.repository.specifications;
+package com.challenge.disney.disney.repository.specifications;
 
 import com.challenge.disney.disney.dto.PeliculaFiltersDTO;
 import com.challenge.disney.disney.entity.GeneroEntity;
