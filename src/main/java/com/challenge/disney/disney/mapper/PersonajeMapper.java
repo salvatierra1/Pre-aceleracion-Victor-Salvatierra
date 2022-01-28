@@ -73,6 +73,7 @@ public class PersonajeMapper {
         return dtoList;
     }
 
+    //=== Basic ===
     private PersonajeBasicDTO personajeBasicEntity2Dto(PersonajeEntity ent) {
         PersonajeBasicDTO dto = new PersonajeBasicDTO();
         dto.setNombre(ent.getNombre());

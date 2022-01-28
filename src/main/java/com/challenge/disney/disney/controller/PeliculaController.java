@@ -2,7 +2,6 @@ package com.challenge.disney.disney.controller;
 
 import com.challenge.disney.disney.dto.PeliculaBasicDTO;
 import com.challenge.disney.disney.dto.PeliculaDTO;
-import com.challenge.disney.disney.dto.PersonajeBasicDTO;
 import com.challenge.disney.disney.service.PeliculaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
