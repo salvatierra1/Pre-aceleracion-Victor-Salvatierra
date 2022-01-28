@@ -1,4 +1,4 @@
-package com.challenge.disney.disney.repository.specifications;
+package com.challenge.disney.disney.auth.repository.specifications;
 
 
 import com.challenge.disney.disney.dto.PersonajeFiltersDTO;

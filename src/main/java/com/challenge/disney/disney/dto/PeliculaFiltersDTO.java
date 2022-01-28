@@ -17,18 +17,16 @@ public class PeliculaFiltersDTO {
 
     private String date;
 
-    private String imagen;
-
     private Set<Long> genero;
 
     private String order;
 
-    public PeliculaFiltersDTO(String titulo, Set<Long> genero, String order, String date, String imagen) {
+    public PeliculaFiltersDTO(String titulo, Set<Long> genero, String order, String date) {
         this.titulo = titulo;
         this.date = date;
         this.genero = genero;
         this.order = order;
-        this.imagen = imagen;
+
     }
 
     public boolean isASC() {

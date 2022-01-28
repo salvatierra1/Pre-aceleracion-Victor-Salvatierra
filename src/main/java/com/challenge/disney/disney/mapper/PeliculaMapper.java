@@ -1,8 +1,11 @@
 package com.challenge.disney.disney.mapper;
 
+import com.challenge.disney.disney.dto.PeliculaBasicDTO;
 import com.challenge.disney.disney.dto.PeliculaDTO;
+import com.challenge.disney.disney.dto.PersonajeBasicDTO;
 import com.challenge.disney.disney.entity.GeneroEntity;
 import com.challenge.disney.disney.entity.PeliculaEntity;
+import com.challenge.disney.disney.entity.PersonajeEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -63,5 +66,23 @@ public class PeliculaMapper {
         LocalDate date = LocalDate.parse(stringDate, formato);
         return date;
     }
+
+    //=== Basic ===
+    public List<PeliculaBasicDTO> peliculaBasicEntityList2DtoList(List<PeliculaEntity> listaEntity) {
+        List<PeliculaBasicDTO>dtoList = new ArrayList<>();
+        for(PeliculaEntity ent : listaEntity){
+            dtoList.add(this.peliculaBasicEntity2Dto(ent));
+        }
+        return dtoList;
+    }
+
+    private PeliculaBasicDTO peliculaBasicEntity2Dto(PeliculaEntity ent) {
+        PeliculaBasicDTO peliculaBasicDTO = new PeliculaBasicDTO();
+        peliculaBasicDTO.setImagen(ent.getImagen());
+        peliculaBasicDTO.setTitulo(ent.getTitulo());
+        peliculaBasicDTO.setFechaCreacion(ent.getFechaCreacion().toString());
+        return peliculaBasicDTO;
+    }
+
 
 }

@@ -4,9 +4,10 @@ import com.challenge.disney.disney.dto.PersonajeBasicDTO;
 import com.challenge.disney.disney.dto.PersonajeDTO;
 import com.challenge.disney.disney.dto.PersonajeFiltersDTO;
 import com.challenge.disney.disney.entity.PersonajeEntity;
+import com.challenge.disney.disney.exception.ParamNotFound;
 import com.challenge.disney.disney.mapper.PersonajeMapper;
-import com.challenge.disney.disney.repository.PersonajeRepository;
-import com.challenge.disney.disney.repository.specifications.PersonajeSpecification;
+import com.challenge.disney.disney.auth.repository.PersonajeRepository;
+import com.challenge.disney.disney.auth.repository.specifications.PersonajeSpecification;
 import com.challenge.disney.disney.service.PersonajeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -70,6 +71,7 @@ public class PersonajeServiceImpl implements PersonajeService {
     PersonajeEntity personajeEdit(Long id) {
         Optional<PersonajeEntity>personajeEntity = personajeRepository.findById(id);
         if (!personajeEntity.isPresent()){
+            throw  new ParamNotFound("id no valido");
         }
         return personajeEntity.get();
     }
