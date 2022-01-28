@@ -75,7 +75,7 @@ public class PeliculaMapper {
         }
         return dtoList;
     }
-
+    //=== Basic ===
     private PeliculaBasicDTO peliculaBasicEntity2Dto(PeliculaEntity ent) {
         PeliculaBasicDTO peliculaBasicDTO = new PeliculaBasicDTO();
         peliculaBasicDTO.setImagen(ent.getImagen());
