@@ -3,7 +3,7 @@ package com.challenge.disney.disney.service.impl;
 import com.challenge.disney.disney.dto.GeneroDTO;
 import com.challenge.disney.disney.entity.GeneroEntity;
 import com.challenge.disney.disney.mapper.GeneroMapper;
-import com.challenge.disney.disney.repository.GeneroRepository;
+import com.challenge.disney.disney.auth.repository.GeneroRepository;
 import com.challenge.disney.disney.service.GeneroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;

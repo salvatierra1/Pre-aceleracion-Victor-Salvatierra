@@ -64,4 +64,6 @@ public class PersonajeController {
         return ResponseEntity.status(HttpStatus.OK).body(personajeDTOList);
     }
 
+
+
 }

@@ -1,6 +1,8 @@
 package com.challenge.disney.disney.controller;
 
+import com.challenge.disney.disney.dto.PeliculaBasicDTO;
 import com.challenge.disney.disney.dto.PeliculaDTO;
+import com.challenge.disney.disney.dto.PersonajeBasicDTO;
 import com.challenge.disney.disney.service.PeliculaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -41,17 +43,23 @@ public class PeliculaController {
         PeliculaDTO peliculaEditada = peliculaService.editPelicula(id, edit);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(peliculaEditada);
     }
+    //=== Get ===
+    @GetMapping("/all")
+    public ResponseEntity<List<PeliculaBasicDTO>> obtenerPeliculasBasic(){
+        List<PeliculaBasicDTO> peliculasBasic = peliculaService.traerPeliculasBasic();
+        return ResponseEntity.status(HttpStatus.OK).body(peliculasBasic);
+
+    }
 
     //=== Get --- Filters ===
     @GetMapping
     public ResponseEntity<List<PeliculaDTO>> detallesPorFiltros(
             @RequestParam(required = false)String titulo,
-            @RequestParam(required = false)String imagen,
             @RequestParam(required = false) String date,
             @RequestParam(required = false) Set<Long> genero,
             @RequestParam(required  = false, defaultValue = "ASC") String order
     ){
-        List<PeliculaDTO> peliculaDTOList = peliculaService.traerPorFiltros(titulo, genero, order, date, imagen);
+        List<PeliculaDTO> peliculaDTOList = peliculaService.traerPorFiltros(titulo, genero, order, date);
         return ResponseEntity.status(HttpStatus.OK).body(peliculaDTOList);
     }
 

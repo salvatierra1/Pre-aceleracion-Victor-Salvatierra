@@ -1,4 +1,4 @@
-package com.challenge.disney.disney.repository.specifications;
+package com.challenge.disney.disney.auth.repository.specifications;
 
 import com.challenge.disney.disney.dto.PeliculaFiltersDTO;
 import com.challenge.disney.disney.entity.GeneroEntity;
@@ -33,16 +33,6 @@ public class PeliculaSpecification {
                         criteriaBuilder.like(
                                 criteriaBuilder.lower(root.get("titulo")),
                                 "%" + peliculaFiltersDTO.getTitulo().toLowerCase() + "%"
-                        )
-                );
-            }
-
-            //=== Imagen ==
-            if (StringUtils.hasLength(peliculaFiltersDTO.getImagen())){
-                predicates.add(
-                        criteriaBuilder.like(
-                                criteriaBuilder.lower(root.get("imagen")),
-                                "%" + peliculaFiltersDTO.getImagen().toLowerCase() + "%"
                         )
                 );
             }
