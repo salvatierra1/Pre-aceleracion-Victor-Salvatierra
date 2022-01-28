@@ -53,15 +53,11 @@ public class UserAuthController {
                             authReq.getPassword()
                     )
             );
-
             userDetails = (UserDetails) auth.getPrincipal();
-
         } catch (BadCredentialsException e) {
             throw new Exception("Incorrect username or password", e);
         }
-
         final String jwt = jwtTokenUtil.generateToken(userDetails);
-
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 
