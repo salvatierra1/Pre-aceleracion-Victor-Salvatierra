@@ -42,7 +42,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Auth -->
+		<!--Auth-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
