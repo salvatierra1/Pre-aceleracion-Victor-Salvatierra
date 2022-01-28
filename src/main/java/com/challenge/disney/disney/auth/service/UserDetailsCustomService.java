@@ -38,7 +38,6 @@ public class UserDetailsCustomService implements UserDetailsService {
     }
 
     public boolean save(UserDTO userDTO){
-
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(userDTO.getUsername());
         userEntity.setPassword(passwordEncoder.encode(userDTO.getPassword()));
