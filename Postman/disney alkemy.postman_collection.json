@@ -15,16 +15,10 @@
 							"name": "Crear personaje",
 							"request": {
 								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-					
-										"type": "text"
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"imagen\": \"jpg\",\r\n    \"nombre\": \"Bn\",\r\n    \"edad\": \"50\",\r\n    \"peso\": \"80\",\r\n    \"historia\": \"kgndjigk\"\r\n\r\n}",
+									"raw": "{\r\n    \"image\": \"jpg\",\r\n    \"name\": \"Can\",\r\n    \"age\": 40,\r\n    \"weight\": 70.0,\r\n    \"history\": \"Volador\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -49,12 +43,7 @@
 							"name": "Lista de personajes con peli",
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"url": {
 									"raw": "http://localhost:8080/characters",
 									"protocol": "http",
@@ -73,12 +62,7 @@
 							"name": "Editar personaje por ID",
 							"request": {
 								"method": "PUT",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -102,12 +86,7 @@
 							"name": "Soft delete por ID",
 							"request": {
 								"method": "DELETE",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"url": {
 									"raw": "http://localhost:8080/characters/delete/5",
 									"protocol": "http",
@@ -131,11 +110,12 @@
 								"header": [
 									{
 										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWN0b3JAZ21haWwuY29tIiwiZXhwIjoxNjQzNDM0NzcxLCJpYXQiOjE2NDMzOTg3NzF9.hKvWBxqO9e1H7BnP7jYJMk9V4ElT-7FTbZzVcVqODw8",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "http://localhost:8080/characters?nombre=Batman",
+									"raw": "http://localhost:8080/characters",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -147,7 +127,8 @@
 									"query": [
 										{
 											"key": "nombre",
-											"value": "Batman"
+											"value": "Batman",
+											"disabled": true
 										},
 										{
 											"key": "edad",
@@ -171,6 +152,7 @@
 								"header": [
 									{
 										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWN0b3JAZ21haWwuY29tIiwiZXhwIjoxNjQzNDM0NzcxLCJpYXQiOjE2NDMzOTg3NzF9.hKvWBxqO9e1H7BnP7jYJMk9V4ElT-7FTbZzVcVqODw8",
 										"type": "text"
 									}
 								],
@@ -198,15 +180,10 @@
 							"name": "Crear pelicula con per y gen",
 							"request": {
 								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"imagen\": \"bo\",\r\n    \"titulo\": \"Hulk\",\r\n    \"fechaCreacion\": \"2022-10-12\",\r\n    \"calificacion\": 3,\r\n    \"generoId\": 1, \r\n    \"personajesDTO\": [\r\n        {\r\n            \"imagen\": \"jpg\",\r\n            \"nombre\": \"Can\",\r\n            \"edad\": \"40\",\r\n            \"peso\": \"70\",\r\n            \"historia\": \"Volador\"\r\n            \r\n        },\r\n        {\r\n            \"imagen\": \"jpe\",\r\n            \"nombre\": \"Jhon\",\r\n            \"edad\": \"40\",\r\n            \"peso\": \"70\",\r\n            \"historia\": \"Dueño\"\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"image\": \"bo\",\r\n    \"title\": \"Hulk\",\r\n    \"dateCreation\": \"2022-10-12\",\r\n    \"qualification\": 3,\r\n    \"genderId\": 3, \r\n    \"charactersDTO\": [\r\n        {\r\n            \"image\": \"jpg\",\r\n            \"name\": \"Can\",\r\n            \"age\": \"40\",\r\n            \"weight\": \"70\",\r\n            \"history\": \"Volador\"\r\n            \r\n        },\r\n        {\r\n            \"image\": \"jpg\",\r\n            \"name\": \"SuperMan\",\r\n            \"age\": \"40\",\r\n            \"weight\": \"70\",\r\n            \"history\": \"Volador\"\r\n            \r\n        }\r\n        \r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -231,12 +208,7 @@
 							"name": "Lista de peliculas con personajes",
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"url": {
 									"raw": "http://localhost:8080/movies",
 									"protocol": "http",
@@ -257,14 +229,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/peliculas",
+									"raw": "http://localhost:8080/movies",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"peliculas"
+										"movies"
 									]
 								}
 							},
@@ -296,7 +268,9 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"type": "text"
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWN0b3JAZ21haWwuY29tIiwiZXhwIjoxNjQzNDM0NzcxLCJpYXQiOjE2NDMzOTg3NzF9.hKvWBxqO9e1H7BnP7jYJMk9V4ElT-7FTbZzVcVqODw8",
+										"type": "text",
+										"disabled": true
 									}
 								],
 								"url": {
@@ -367,12 +341,14 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"type": "text"
+										"value": "",
+										"type": "text",
+										"disabled": true
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nombre\": \"acn\",\r\n    \"imagen\": \"jpg\"\r\n}",
+									"raw": "{\r\n    \"name\": \"acn\",\r\n    \"image\": \"jpg\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -397,7 +373,18 @@
 							"name": "Lista de Generos con peliculas",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/genres",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"genres"
+									]
+								}
 							},
 							"response": []
 						}
@@ -415,6 +402,7 @@
 						"header": [
 							{
 								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWN0b3JkYW5pZWxzYWx2YXRpZXJyYTZAZ21haWwuY29tIiwiZXhwIjoxNjQzMjMxODAxLCJpYXQiOjE2NDMxOTU4MDF9.zfkxgUAFDWqpGMwAuBmKpC6TCfedasZpHHtuuNKVogQ",
 								"type": "text",
 								"disabled": true
 							}
