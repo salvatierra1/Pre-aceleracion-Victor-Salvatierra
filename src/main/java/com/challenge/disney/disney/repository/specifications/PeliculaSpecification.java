@@ -28,11 +28,11 @@ public class PeliculaSpecification {
             List<Predicate> predicates = new ArrayList<>();
 
             //=== Name ==
-            if (StringUtils.hasLength(peliculaFiltersDTO.getTitulo())) {
+            if (StringUtils.hasLength(peliculaFiltersDTO.getTitle())) {
                 predicates.add(
                         criteriaBuilder.like(
-                                criteriaBuilder.lower(root.get("titulo")),
-                                "%" + peliculaFiltersDTO.getTitulo().toLowerCase() + "%"
+                                criteriaBuilder.lower(root.get("title")),
+                                "%" + peliculaFiltersDTO.getTitle().toLowerCase() + "%"
                         )
                 );
             }
@@ -43,21 +43,21 @@ public class PeliculaSpecification {
                 LocalDate date = LocalDate.parse(peliculaFiltersDTO.getDate(), formatter);
 
                 predicates.add(
-                        criteriaBuilder.equal(root.get("fechaCreacion"), date)
+                        criteriaBuilder.equal(root.get("dateCreation"), date)
                 );
             }
 
             //=== Genre ===
-            if (!CollectionUtils.isEmpty(peliculaFiltersDTO.getGenero())) {
-                Join<PeliculaEntity, GeneroEntity> join = root.join("genero", JoinType.INNER);
-                Expression<String> generoId = join.get("id");
-                predicates.add(generoId.in(peliculaFiltersDTO.getGenero()));
+            if (!CollectionUtils.isEmpty(peliculaFiltersDTO.getGender())) {
+                Join<PeliculaEntity, GeneroEntity> join = root.join("genderEntity", JoinType.INNER);
+                Expression<String> genderId = join.get("id");
+                predicates.add(genderId.in(peliculaFiltersDTO.getGender()));
             }
 
             query.distinct(true);
 
             //=== Order ===
-            String orderByField = "titulo";
+            String orderByField = "title";
             query.orderBy(
                     peliculaFiltersDTO.isASC() ?
                             criteriaBuilder.asc(root.get(orderByField)) :

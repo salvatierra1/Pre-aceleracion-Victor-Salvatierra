@@ -12,8 +12,8 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
-@Table (name = "personaje")
-@SQLDelete(sql = "UPDATE personaje SET deleted = true WHERE id=?")
+@Table (name = "characters")
+@SQLDelete(sql = "UPDATE characters SET deleted = true WHERE id=?")
 @Where(clause = "deleted = false")
 public class PersonajeEntity {
 
@@ -24,22 +24,22 @@ public class PersonajeEntity {
 
     private boolean deleted = Boolean.FALSE;
 
-    private String imagen;
+    private String image;
 
-    private String nombre;
+    private String name;
 
-    private int edad;
+    private int age;
 
-    private double peso;
+    private double weight;
 
-    private String historia;
+    private String history;
 
 
     //=== Tiene muchas peliculas ===
     @ManyToMany(
-            mappedBy = "personajes",
+            mappedBy = "characters",
             fetch  = FetchType.LAZY
     )
-    private List<PeliculaEntity> peliculas = new ArrayList<>();
+    private List<PeliculaEntity> movies = new ArrayList<>();
 
 }

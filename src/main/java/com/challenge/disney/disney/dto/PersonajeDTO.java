@@ -10,16 +10,16 @@ public class PersonajeDTO {
 
     private Long id;
 
-    private String imagen;
+    private String image;
 
-    private String nombre;
+    private String name;
 
-    private int edad;
+    private int age;
 
-    private double peso;
+    private double weight;
 
-    private String historia;
+    private String history;
 
-    private List<PeliculaDTO> peliculasDTO;
+    private List<PeliculaDTO> moviesDTO;
 
 }

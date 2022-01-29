@@ -12,7 +12,6 @@ import java.util.List;
 @Component
 public class GeneroMapper {
 
-
     //=== Mapper ===
     private PeliculaMapper peliculaMapper;
     public GeneroMapper(@Autowired @Lazy PeliculaMapper peliculaMapper) {
@@ -20,28 +19,28 @@ public class GeneroMapper {
     }
 
     //=== DTO --> Entity
-    public GeneroEntity generoDTO2Entity(GeneroDTO dto) {
-        GeneroEntity generoEntity = new GeneroEntity();
-        generoEntity.setImagen(dto.getImagen());
-        generoEntity.setNombre(dto.getNombre());
-        return generoEntity;
+    public GeneroEntity genderDTO2Entity(GeneroDTO dto) {
+        GeneroEntity genderEntity = new GeneroEntity();
+        genderEntity.setImage(dto.getImage());
+        genderEntity.setName(dto.getName());
+        return genderEntity;
     }
 
     //=== Entity --> DTO ===
-    public GeneroDTO generoEntity2Dto(GeneroEntity generoEntity) {
-        GeneroDTO generoDTO = new GeneroDTO();
-        generoDTO.setId(generoEntity.getId());
-        generoDTO.setNombre(generoEntity.getNombre());
-        generoDTO.setImagen(generoEntity.getImagen());
-        return generoDTO;
+    public GeneroDTO genderEntity2Dto(GeneroEntity genderEntity) {
+        GeneroDTO genderDTO = new GeneroDTO();
+        genderDTO.setId(genderEntity.getId());
+        genderDTO.setName(genderEntity.getName());
+        genderDTO.setImage(genderEntity.getImage());
+        return genderDTO;
     }
 
     //=== ListEntity --> ListDTO ===
-    public List<GeneroDTO> generoEntityList2DTOList(List<GeneroEntity> savedGeneros) {
-        List<GeneroDTO> generoDTOList = new ArrayList<>();
-        for (GeneroEntity ent : savedGeneros){
-            generoDTOList.add(this.generoEntity2Dto(ent));
+    public List<GeneroDTO> genderEntityList2DTOList(List<GeneroEntity> savedGender) {
+        List<GeneroDTO> genderDTOList = new ArrayList<>();
+        for (GeneroEntity ent : savedGender){
+            genderDTOList.add(this.genderEntity2Dto(ent));
         }
-        return generoDTOList;
+        return genderDTOList;
     }
 }

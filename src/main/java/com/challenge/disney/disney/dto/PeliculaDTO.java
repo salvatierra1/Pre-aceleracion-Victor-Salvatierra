@@ -10,16 +10,16 @@ public class PeliculaDTO {
 
     private Long id;
 
-    private String imagen;
+    private String image;
 
-    private String titulo;
+    private String title;
 
-    private String fechaCreacion;
+    private String dateCreation;
 
-    private int calificacion;
+    private int qualification;
 
-    private Long generoId;
+    private Long genderId;
 
-    private List<PersonajeDTO> personajesDTO;
+    private List<PersonajeDTO> charactersDTO;
 
 }

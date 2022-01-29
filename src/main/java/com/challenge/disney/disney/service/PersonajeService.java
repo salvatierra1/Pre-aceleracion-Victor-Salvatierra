@@ -12,9 +12,9 @@ public interface PersonajeService {
 
     void delete(Long id);
 
-    PersonajeDTO editPersonaje(Long id, PersonajeDTO edit);
+    PersonajeDTO editCharacter(Long id, PersonajeDTO edit);
 
-    List<PersonajeDTO> traerPorFiltros(String nombre, Integer edad, Set<Long> peliculas);
+    List<PersonajeDTO> getByFilters(String name, Integer age, Set<Long> movies);
 
-    List<PersonajeBasicDTO> traerPersonajesBasic();
+    List<PersonajeBasicDTO> getCharacterBasic();
 }

@@ -21,36 +21,36 @@ public class PersonajeMapper {
     }
 
     //=== DTO --> Entity ===
-    public PersonajeEntity personajeDTO2Entity(PersonajeDTO dto) {
-        PersonajeEntity personajeEntity = new PersonajeEntity();
-        personajeEntity.setEdad(dto.getEdad());
-        personajeEntity.setHistoria(dto.getHistoria());
-        personajeEntity.setImagen(dto.getImagen());
-        personajeEntity.setNombre(dto.getNombre());
-        personajeEntity.setPeso(dto.getPeso());
-        return personajeEntity;
+    public PersonajeEntity characterDTO2Entity(PersonajeDTO dto) {
+        PersonajeEntity characterEntity = new PersonajeEntity();
+        characterEntity.setAge(dto.getAge());
+        characterEntity.setHistory(dto.getHistory());
+        characterEntity.setImage(dto.getImage());
+        characterEntity.setName(dto.getName());
+        characterEntity.setWeight(dto.getWeight());
+        return characterEntity;
     }
 
     //=== Entity --> DTO ===
-    public PersonajeDTO personajeEntity2Dto(PersonajeEntity personajeEntity, boolean mostrarPersonajesDePelicula) {
-        PersonajeDTO personajeDTO = new PersonajeDTO();
-        personajeDTO.setId(personajeEntity.getId());
-        personajeDTO.setEdad(personajeEntity.getEdad());
-        personajeDTO.setHistoria(personajeEntity.getHistoria());
-        personajeDTO.setImagen(personajeEntity.getImagen());
-        personajeDTO.setNombre(personajeEntity.getNombre());
-        personajeDTO.setPeso(personajeEntity.getPeso());
-        if (mostrarPersonajesDePelicula){
-           personajeDTO.setPeliculasDTO(peliculaMapper.peliculaEntityList2DtoList(personajeEntity.getPeliculas(), false));
+    public PersonajeDTO characterEntity2Dto(PersonajeEntity personajeEntity, boolean showCharactersMovie) {
+        PersonajeDTO characterDTO = new PersonajeDTO();
+        characterDTO.setId(personajeEntity.getId());
+        characterDTO.setAge(personajeEntity.getAge());
+        characterDTO.setHistory(personajeEntity.getHistory());
+        characterDTO.setImage(personajeEntity.getImage());
+        characterDTO.setName(personajeEntity.getName());
+        characterDTO.setWeight(personajeEntity.getWeight());
+        if (showCharactersMovie){
+           characterDTO.setMoviesDTO(peliculaMapper.movieEntityList2DtoList(personajeEntity.getMovies(), false));
         }
-        return personajeDTO;
+        return characterDTO;
     }
 
     //=== ListEntity --> ListDto
-   public List<PersonajeDTO>personajeEntityList2DtoList(List<PersonajeEntity> listaEntity, boolean b){
+   public List<PersonajeDTO> characterEntityList2DtoList(List<PersonajeEntity> listaEntity, boolean b){
         List<PersonajeDTO>dtoList = new ArrayList<>();
         for(PersonajeEntity ent : listaEntity){
-            dtoList.add(this.personajeEntity2Dto(ent, b));
+            dtoList.add(this.characterEntity2Dto(ent, b));
         }
         return dtoList;
     }
@@ -59,13 +59,13 @@ public class PersonajeMapper {
     public List<PersonajeEntity> toEntityList(List<PersonajeDTO> personajesDTO) {
         List<PersonajeEntity>personajeEntityList = new ArrayList<>();
         for(PersonajeDTO personaje : personajesDTO){
-            personajeEntityList.add(this.personajeDTO2Entity(personaje));
+            personajeEntityList.add(this.characterDTO2Entity(personaje));
         }
         return personajeEntityList;
     }
 
     //=== Basic ===
-    public List<PersonajeBasicDTO> personajeBasicEntityList2DtoList(List<PersonajeEntity> listaEntity) {
+    public List<PersonajeBasicDTO> characterBasicEntityList2DtoList(List<PersonajeEntity> listaEntity) {
         List<PersonajeBasicDTO>dtoList = new ArrayList<>();
         for(PersonajeEntity ent : listaEntity){
             dtoList.add(this.personajeBasicEntity2Dto(ent));
@@ -76,8 +76,9 @@ public class PersonajeMapper {
     //=== Basic ===
     private PersonajeBasicDTO personajeBasicEntity2Dto(PersonajeEntity ent) {
         PersonajeBasicDTO dto = new PersonajeBasicDTO();
-        dto.setNombre(ent.getNombre());
-        dto.setImagen(ent.getImagen());
+        dto.setName(ent.getName());
+        dto.setImage(ent.getImage());
         return dto;
     }
+
 }

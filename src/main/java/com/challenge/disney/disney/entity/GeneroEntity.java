@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@Table(name = "genero")
+@Table(name = "gender")
 public class GeneroEntity {
 
     //=== Atributos ===
@@ -16,8 +16,8 @@ public class GeneroEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private String nombre;
+    private String name;
 
-    private String imagen;
+    private String image;
 
 }

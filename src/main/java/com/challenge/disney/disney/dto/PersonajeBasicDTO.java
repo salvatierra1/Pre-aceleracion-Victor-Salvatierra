@@ -8,8 +8,8 @@ import lombok.Setter;
 @Getter
 public class PersonajeBasicDTO {
 
-    private String imagen;
+    private String image;
 
-    private String nombre;
+    private String name;
 
 }

@@ -2,10 +2,8 @@ package com.challenge.disney.disney.mapper;
 
 import com.challenge.disney.disney.dto.PeliculaBasicDTO;
 import com.challenge.disney.disney.dto.PeliculaDTO;
-import com.challenge.disney.disney.dto.PersonajeBasicDTO;
 import com.challenge.disney.disney.entity.GeneroEntity;
 import com.challenge.disney.disney.entity.PeliculaEntity;
-import com.challenge.disney.disney.entity.PersonajeEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -25,45 +23,45 @@ public class PeliculaMapper {
     }
 
     //=== DTO --> Entity
-    public PeliculaEntity toEntity(PeliculaDTO dto){
-        GeneroEntity generoEntity = new GeneroEntity();
-        generoEntity.setId(dto.getGeneroId());
-        PeliculaEntity peliculaEntity = new PeliculaEntity();
-        peliculaEntity.setImagen(dto.getImagen());
-        peliculaEntity.setTitulo(dto.getTitulo());
-        peliculaEntity.setCalificacion(dto.getCalificacion());
-        peliculaEntity.setFechaCreacion(this.String2LocalDate(dto.getFechaCreacion()));
-        peliculaEntity.setPersonajes(personajeMapper.toEntityList(dto.getPersonajesDTO()));
-        peliculaEntity.setGenero(generoEntity);
-        return peliculaEntity;
+    public PeliculaEntity movieDTO2Entity(PeliculaDTO dto){
+        GeneroEntity genderEntity = new GeneroEntity();
+        genderEntity.setId(dto.getGenderId());
+        PeliculaEntity movieEntity = new PeliculaEntity();
+        movieEntity.setImage(dto.getImage());
+        movieEntity.setTitle(dto.getTitle());
+        movieEntity.setQualification(dto.getQualification());
+        movieEntity.setDateCreation(this.String2LocalDate(dto.getDateCreation()));
+        movieEntity.setCharacters(personajeMapper.toEntityList(dto.getCharactersDTO()));
+        movieEntity.setGenderEntity(genderEntity);
+        return movieEntity;
     }
 
     //=== Entity --> DTO
-    public PeliculaDTO peliculaEntity2Dto(PeliculaEntity peliculaEntity, boolean mostrarPelisDePersonaje){
-        PeliculaDTO peliculaDTO = new PeliculaDTO();
-        peliculaDTO.setId(peliculaEntity.getId());
-        peliculaDTO.setImagen(peliculaEntity.getImagen());
-        peliculaDTO.setTitulo(peliculaEntity.getTitulo());
-        peliculaDTO.setCalificacion(peliculaEntity.getCalificacion());
-        peliculaDTO.setFechaCreacion(peliculaEntity.getFechaCreacion().toString());
-        peliculaDTO.setGeneroId(peliculaEntity.getGenero().getId());
-        peliculaDTO.setPersonajesDTO(personajeMapper.personajeEntityList2DtoList(peliculaEntity.getPersonajes(), false));
-        return peliculaDTO;
+    public PeliculaDTO movieEntity2Dto(PeliculaEntity peliculaEntity, boolean showMoviesCharacter){
+        PeliculaDTO movieDTO = new PeliculaDTO();
+        movieDTO.setId(peliculaEntity.getId());
+        movieDTO.setImage(peliculaEntity.getImage());
+        movieDTO.setTitle(peliculaEntity.getTitle());
+        movieDTO.setQualification(peliculaEntity.getQualification());
+        movieDTO.setDateCreation(peliculaEntity.getDateCreation().toString());
+        movieDTO.setGenderId(peliculaEntity.getGenderEntity().getId());
+        movieDTO.setCharactersDTO(personajeMapper.characterEntityList2DtoList(peliculaEntity.getCharacters(), false));
+        return movieDTO;
     }
 
     //=== ListEntity --> ListDto ===
-    public List<PeliculaDTO> peliculaEntityList2DtoList(List<PeliculaEntity> listaEntity, boolean mostrarPelisDePersonajes){
+    public List<PeliculaDTO> movieEntityList2DtoList(List<PeliculaEntity> listaEntity, boolean mostrarPelisDePersonajes){
         List<PeliculaDTO>dtoList = new ArrayList<>();
             for(PeliculaEntity ent : listaEntity) {
-                dtoList.add(this.peliculaEntity2Dto(ent, false));
+                dtoList.add(this.movieEntity2Dto(ent, false));
             }
         return dtoList;
     }
 
     //=== Date ===
     public LocalDate String2LocalDate(String stringDate) {
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(stringDate, formato);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(stringDate, format);
         return date;
     }
 
@@ -71,18 +69,17 @@ public class PeliculaMapper {
     public List<PeliculaBasicDTO> peliculaBasicEntityList2DtoList(List<PeliculaEntity> listaEntity) {
         List<PeliculaBasicDTO>dtoList = new ArrayList<>();
         for(PeliculaEntity ent : listaEntity){
-            dtoList.add(this.peliculaBasicEntity2Dto(ent));
+            dtoList.add(this.movieBasicEntity2Dto(ent));
         }
         return dtoList;
     }
     //=== Basic ===
-    private PeliculaBasicDTO peliculaBasicEntity2Dto(PeliculaEntity ent) {
-        PeliculaBasicDTO peliculaBasicDTO = new PeliculaBasicDTO();
-        peliculaBasicDTO.setImagen(ent.getImagen());
-        peliculaBasicDTO.setTitulo(ent.getTitulo());
-        peliculaBasicDTO.setFechaCreacion(ent.getFechaCreacion().toString());
-        return peliculaBasicDTO;
+    private PeliculaBasicDTO movieBasicEntity2Dto(PeliculaEntity ent) {
+        PeliculaBasicDTO movieBasicDTO = new PeliculaBasicDTO();
+        movieBasicDTO.setImage(ent.getImage());
+        movieBasicDTO.setTitle(ent.getTitle());
+        movieBasicDTO.setDateCreation(ent.getDateCreation().toString());
+        return movieBasicDTO;
     }
-
 
 }

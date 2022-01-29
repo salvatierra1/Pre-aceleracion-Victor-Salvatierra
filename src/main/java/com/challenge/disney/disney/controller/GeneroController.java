@@ -24,15 +24,15 @@ public class GeneroController {
     //=== Post ===
     @PostMapping()
     public ResponseEntity<GeneroDTO> save(@RequestBody GeneroDTO genero){
-        GeneroDTO generoGuardado = generoService.save(genero);
-        return ResponseEntity.status(HttpStatus.CREATED).body(generoGuardado);
+        GeneroDTO genderSaved = generoService.save(genero);
+        return ResponseEntity.status(HttpStatus.CREATED).body(genderSaved);
     }
 
     //=== Get ===
     @GetMapping("/all")
-    public ResponseEntity<List<GeneroDTO>>obtenerGeneros(){
-        List<GeneroDTO> generoDTOList = generoService.traerGeneros();
-        return ResponseEntity.status(HttpStatus.OK).body(generoDTOList);
+    public ResponseEntity<List<GeneroDTO>> getGender(){
+        List<GeneroDTO> genderDTOList = generoService.getGenders();
+        return ResponseEntity.status(HttpStatus.OK).body(genderDTOList);
     }
 
 }

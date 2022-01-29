@@ -27,8 +27,8 @@ public class PersonajeController {
     //=== Post ===
     @PostMapping
     public ResponseEntity<PersonajeDTO> save(@RequestBody PersonajeDTO personaje){
-        PersonajeDTO personajeGuardado = personajeService.save(personaje);
-        return ResponseEntity.status(HttpStatus.CREATED).body(personajeGuardado);
+        PersonajeDTO characterSaved = personajeService.save(personaje);
+        return ResponseEntity.status(HttpStatus.CREATED).body(characterSaved);
     }
 
     //=== Delete ===
@@ -40,28 +40,28 @@ public class PersonajeController {
 
     //=== Put ===
     @PutMapping("/{id}")
-    public ResponseEntity<PersonajeDTO> editarPersonaje(@PathVariable Long id, @RequestBody PersonajeDTO edit){
-        PersonajeDTO editarPer = personajeService.editPersonaje(id, edit);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(editarPer);
+    public ResponseEntity<PersonajeDTO> editCharacter(@PathVariable Long id, @RequestBody PersonajeDTO edit){
+        PersonajeDTO characterDTO = personajeService.editCharacter(id, edit);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(characterDTO);
     }
 
     //=== Get ===
     @GetMapping("/all")
-    public ResponseEntity<List<PersonajeBasicDTO>> obtenerPersonajesBasic(){
-        List<PersonajeBasicDTO> personajesBasic = personajeService.traerPersonajesBasic();
-        return ResponseEntity.status(HttpStatus.OK).body(personajesBasic);
+    public ResponseEntity<List<PersonajeBasicDTO>> getCharactersBasic(){
+        List<PersonajeBasicDTO> characterBasicList = personajeService.getCharacterBasic();
+        return ResponseEntity.status(HttpStatus.OK).body(characterBasicList);
 
     }
 
     //=== Get --- Filters ===
     @GetMapping
-    public ResponseEntity<List<PersonajeDTO>> detallesPorFiltros(
-            @RequestParam(required = false)String nombre,
-            @RequestParam(required = false)Integer edad,
-            @RequestParam(required = false)Set<Long>peliculas
+    public ResponseEntity<List<PersonajeDTO>> detailsByFilters(
+            @RequestParam(required = false)String name,
+            @RequestParam(required = false)Integer age,
+            @RequestParam(required = false)Set<Long>movies
             ){
-        List<PersonajeDTO> personajeDTOList = personajeService.traerPorFiltros(nombre, edad, peliculas);
-        return ResponseEntity.status(HttpStatus.OK).body(personajeDTOList);
+        List<PersonajeDTO> characterDTOList = personajeService.getByFilters(name, age, movies);
+        return ResponseEntity.status(HttpStatus.OK).body(characterDTOList);
     }
 
 

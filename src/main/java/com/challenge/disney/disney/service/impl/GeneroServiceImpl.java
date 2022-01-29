@@ -29,17 +29,17 @@ public class GeneroServiceImpl implements GeneroService {
     //=== Post ===
     @Override
     public GeneroDTO save(GeneroDTO dto) {
-        GeneroEntity generoEnt = generoMapper.generoDTO2Entity(dto);
+        GeneroEntity generoEnt = generoMapper.genderDTO2Entity(dto);
         GeneroEntity generoSaved = generoRepository.save(generoEnt);
-        GeneroDTO resultado = generoMapper.generoEntity2Dto(generoSaved);
-        return resultado;
+        GeneroDTO result = generoMapper.genderEntity2Dto(generoSaved);
+        return result;
     }
 
     //=== Get ===
     @Override
-    public List<GeneroDTO> traerGeneros() {
+    public List<GeneroDTO> getGenders() {
         List<GeneroEntity> savedGeneros = generoRepository.findAll();
-        List<GeneroDTO> resultado = generoMapper.generoEntityList2DTOList(savedGeneros);
-        return  resultado;
+        List<GeneroDTO> result = generoMapper.genderEntityList2DTOList(savedGeneros);
+        return  result;
     }
 }

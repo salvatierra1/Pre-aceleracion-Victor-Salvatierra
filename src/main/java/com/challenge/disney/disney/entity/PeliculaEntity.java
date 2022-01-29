@@ -13,10 +13,10 @@ import java.util.List;
 
 
 @Entity
-@Table (name = "pelicula")
+@Table (name = "movie")
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE pelicula SET deleted = true WHERE id=?")
+@SQLDelete(sql = "UPDATE movie SET deleted = true WHERE id=?")
 @Where(clause = "deleted = false")
 public class PeliculaEntity {
 
@@ -28,15 +28,15 @@ public class PeliculaEntity {
 
     private boolean deleted = Boolean.FALSE;
 
-    private String imagen;
+    private String image;
 
-    private String titulo;
+    private String title;
 
-    @Column(name = "fecha_creacion")
+    private int qualification;
+
+    @Column(name = "date_creation")
     @DateTimeFormat(pattern = "yyyy/MM/dd")
-    private LocalDate fechaCreacion;
-
-    private int calificacion;
+    private LocalDate dateCreation;
 
 
     //=== Tiene muchos Personajes ===
@@ -47,15 +47,15 @@ public class PeliculaEntity {
             },
             fetch = FetchType.LAZY
     )@JoinTable(
-            name = "pelicula_personaje",
-            joinColumns = @JoinColumn(name = "pelicula_id"),
-            inverseJoinColumns = @JoinColumn(name = "personaje_id")
+            name = "movie_character",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "character_id")
     )
 
-    private List<PersonajeEntity> personajes = new ArrayList<>();
+    private List<PersonajeEntity> characters = new ArrayList<>();
 
     //=== Tiene un Genero ==
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private GeneroEntity genero;
+    private GeneroEntity genderEntity;
 
 }

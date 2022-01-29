@@ -25,8 +25,8 @@ public class PeliculaController {
     //=== Post ===
     @PostMapping
     public ResponseEntity<PeliculaDTO>save(@RequestBody PeliculaDTO pelicula){
-        PeliculaDTO peliculaGuardada = peliculaService.save(pelicula);
-        return ResponseEntity.status(HttpStatus.CREATED).body(peliculaGuardada);
+        PeliculaDTO moviesSaved = peliculaService.save(pelicula);
+        return ResponseEntity.status(HttpStatus.CREATED).body(moviesSaved);
     }
 
     //=== Delete ===
@@ -38,28 +38,28 @@ public class PeliculaController {
 
     //=== Put ===
     @PutMapping("/{id}")
-    public ResponseEntity<PeliculaDTO> editarPelicula(@PathVariable Long id, @RequestBody PeliculaDTO edit){
-        PeliculaDTO peliculaEditada = peliculaService.editPelicula(id, edit);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(peliculaEditada);
+    public ResponseEntity<PeliculaDTO> editMovies(@PathVariable Long id, @RequestBody PeliculaDTO edit){
+        PeliculaDTO moviesEdited = peliculaService.editPelicula(id, edit);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(moviesEdited);
     }
     //=== Get ===
     @GetMapping("/all")
-    public ResponseEntity<List<PeliculaBasicDTO>> obtenerPeliculasBasic(){
-        List<PeliculaBasicDTO> peliculasBasic = peliculaService.traerPeliculasBasic();
-        return ResponseEntity.status(HttpStatus.OK).body(peliculasBasic);
+    public ResponseEntity<List<PeliculaBasicDTO>> getMoviesBasic(){
+        List<PeliculaBasicDTO>moviesBasic = peliculaService.getMoviesBasic();
+        return ResponseEntity.status(HttpStatus.OK).body(moviesBasic);
 
     }
 
     //=== Get --- Filters ===
     @GetMapping
-    public ResponseEntity<List<PeliculaDTO>> detallesPorFiltros(
-            @RequestParam(required = false)String titulo,
+    public ResponseEntity<List<PeliculaDTO>> detailsByFilters(
+            @RequestParam(required = false)String title,
             @RequestParam(required = false) String date,
-            @RequestParam(required = false) Set<Long> genero,
+            @RequestParam(required = false) Set<Long> gender,
             @RequestParam(required  = false, defaultValue = "ASC") String order
     ){
-        List<PeliculaDTO> peliculaDTOList = peliculaService.traerPorFiltros(titulo, genero, order, date);
-        return ResponseEntity.status(HttpStatus.OK).body(peliculaDTOList);
+        List<PeliculaDTO> moviesDTOList = peliculaService.getByFilters(title, gender, order, date);
+        return ResponseEntity.status(HttpStatus.OK).body(moviesDTOList);
     }
 
 }

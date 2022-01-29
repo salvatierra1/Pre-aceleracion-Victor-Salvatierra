@@ -10,24 +10,23 @@ import java.util.Set;
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class PeliculaFiltersDTO {
 
-    private String titulo;
+    private String title;
 
     private String date;
 
-    private Set<Long> genero;
+    private Set<Long> gender;
 
     private String order;
 
-    public PeliculaFiltersDTO(String titulo, Set<Long> genero, String order, String date) {
-        this.titulo = titulo;
+    public PeliculaFiltersDTO(String title, Set<Long> gender, String order, String date) {
+        this.title = title;
         this.date = date;
-        this.genero = genero;
+        this.gender = gender;
         this.order = order;
-
     }
+
 
     public boolean isASC() {
         return this.order.compareToIgnoreCase("ASC") == 0;

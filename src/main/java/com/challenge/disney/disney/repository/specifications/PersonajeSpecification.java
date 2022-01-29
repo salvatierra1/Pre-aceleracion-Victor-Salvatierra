@@ -28,27 +28,27 @@ public class PersonajeSpecification {
             List<Predicate> predicates = new ArrayList<>();
 
             //=== name ===
-           if (hasLength(personajeFilters.getNombre())) {
+           if (hasLength(personajeFilters.getName())) {
                predicates.add(
                        criteriaBuilder.like(
-                               criteriaBuilder.lower(root.get("nombre")),
-                               "%" + personajeFilters.getNombre().toLowerCase() + "%"
+                               criteriaBuilder.lower(root.get("name")),
+                               "%" + personajeFilters.getName().toLowerCase() + "%"
                        )
                );
            }
            //=== Age ===
-            if(personajeFilters.getEdad() != null) predicates.add(
-                    criteriaBuilder.equal(root.get("edad"), personajeFilters.getEdad())
+            if(personajeFilters.getAge() != null) predicates.add(
+                    criteriaBuilder.equal(root.get("age"), personajeFilters.getAge())
             );
 
             //=== Movies ===
-            if (!CollectionUtils.isEmpty(personajeFilters.getPeliculas())){
-                Join<PersonajeEntity, PeliculaEntity> join = root.join("peliculas", JoinType.INNER);
-                Expression<String> peliculasId = join.get("id");
-                predicates.add(peliculasId.in(personajeFilters.getPeliculas()));
+            if (!CollectionUtils.isEmpty(personajeFilters.getMovies())){
+                Join<PersonajeEntity, PeliculaEntity> join = root.join("movies", JoinType.INNER);
+                Expression<String> moviesId = join.get("id");
+                predicates.add(moviesId.in(personajeFilters.getMovies()));
             }
             query.distinct(true);
-            query.orderBy(criteriaBuilder.asc(root.get("nombre")));
+            query.orderBy(criteriaBuilder.asc(root.get("name")));
             return criteriaBuilder.and(predicates.toArray(new javax.persistence.criteria.Predicate[0]));
         };
     }

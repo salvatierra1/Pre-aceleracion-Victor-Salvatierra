@@ -13,10 +13,10 @@ import java.util.Set;
 @AllArgsConstructor
 public class PersonajeFiltersDTO {
 
-    private String nombre;
+    private String name;
 
-    private Integer edad;
+    private Integer age;
 
-    private Set<Long> peliculas;
+    private Set<Long> movies;
 
 }

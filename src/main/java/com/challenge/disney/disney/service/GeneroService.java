@@ -9,6 +9,6 @@ public interface GeneroService {
 
     GeneroDTO save(GeneroDTO dto);
 
-    List<GeneroDTO> traerGeneros();
+    List<GeneroDTO> getGenders();
 
 }

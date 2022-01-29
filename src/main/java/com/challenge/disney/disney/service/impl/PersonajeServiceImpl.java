@@ -36,17 +36,17 @@ public class PersonajeServiceImpl implements PersonajeService {
 
     //=== Post ===
     public PersonajeDTO save(PersonajeDTO dto){
-        PersonajeEntity personajeEntity = personajeMapper.personajeDTO2Entity(dto);
+        PersonajeEntity personajeEntity = personajeMapper.characterDTO2Entity(dto);
         PersonajeEntity personajeSaved = personajeRepository.save(personajeEntity);
-        PersonajeDTO resultado = personajeMapper.personajeEntity2Dto(personajeSaved, false);
+        PersonajeDTO resultado = personajeMapper.characterEntity2Dto(personajeSaved, false);
         return resultado;
     }
 
     //=== Get ===
     public List<PersonajeDTO> traerPersonajes(){
         List<PersonajeEntity>listaEntity = personajeRepository.findAll();
-        List<PersonajeDTO>resultado = personajeMapper.personajeEntityList2DtoList(listaEntity, false);
-        return resultado;
+        List<PersonajeDTO>result = personajeMapper.characterEntityList2DtoList(listaEntity, false);
+        return result;
     }
 
     //=== Delete ===
@@ -56,15 +56,15 @@ public class PersonajeServiceImpl implements PersonajeService {
 
     //=== Put ===
     @Override
-    public PersonajeDTO editPersonaje(Long id, PersonajeDTO edit) {
+    public PersonajeDTO editCharacter(Long id, PersonajeDTO edit) {
         PersonajeEntity savedPersonaje = this.personajeEdit(id);
-        savedPersonaje.setNombre(edit.getNombre());
-        savedPersonaje.setPeso(edit.getPeso());
-        savedPersonaje.setImagen(edit.getImagen());
-        savedPersonaje.setEdad(edit.getEdad());
-        savedPersonaje.setHistoria(edit.getHistoria());
+        savedPersonaje.setName(edit.getName());
+        savedPersonaje.setWeight(edit.getWeight());
+        savedPersonaje.setImage(edit.getImage());
+        savedPersonaje.setAge(edit.getAge());
+        savedPersonaje.setHistory(edit.getHistory());
         PersonajeEntity editPersonaje = personajeRepository.save(savedPersonaje);
-        PersonajeDTO savedDTO = personajeMapper.personajeEntity2Dto(editPersonaje, false);
+        PersonajeDTO savedDTO = personajeMapper.characterEntity2Dto(editPersonaje, false);
         return savedDTO;
     }
 
@@ -79,17 +79,17 @@ public class PersonajeServiceImpl implements PersonajeService {
 
     //=== Filters ===
     @Override
-    public List<PersonajeDTO> traerPorFiltros(String nombre, Integer edad, Set<Long> peliculas) {
-        PersonajeFiltersDTO filtersDTO = new PersonajeFiltersDTO(nombre, edad, peliculas);
+    public List<PersonajeDTO> getByFilters(String name, Integer age, Set<Long> movies) {
+        PersonajeFiltersDTO filtersDTO = new PersonajeFiltersDTO(name, age, movies);
         List<PersonajeEntity> entityList = this.personajeRepository.findAll(this.personajeSpecification.getFilters(filtersDTO));
-        List<PersonajeDTO> resultadoDTO = this.personajeMapper.personajeEntityList2DtoList(entityList, true);
-        return resultadoDTO;
+        List<PersonajeDTO> resultDTO = this.personajeMapper.characterEntityList2DtoList(entityList, true);
+        return resultDTO;
     }
 
     @Override
-    public List<PersonajeBasicDTO> traerPersonajesBasic() {
+    public List<PersonajeBasicDTO> getCharacterBasic() {
         List<PersonajeEntity>listaEntity = personajeRepository.findAll();
-        List<PersonajeBasicDTO>resultado = personajeMapper.personajeBasicEntityList2DtoList(listaEntity);
-        return resultado;
+        List<PersonajeBasicDTO>result = personajeMapper.characterBasicEntityList2DtoList(listaEntity);
+        return result;
     }
 }
