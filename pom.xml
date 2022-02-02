@@ -42,6 +42,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!--log4J
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>-->
+
 		<!--Auth-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

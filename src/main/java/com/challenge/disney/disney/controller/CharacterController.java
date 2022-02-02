@@ -1,8 +1,8 @@
 package com.challenge.disney.disney.controller;
 
-import com.challenge.disney.disney.dto.PersonajeBasicDTO;
-import com.challenge.disney.disney.dto.PersonajeDTO;
-import com.challenge.disney.disney.service.PersonajeService;
+import com.challenge.disney.disney.dto.CharacterBasicDTO;
+import com.challenge.disney.disney.dto.CharacterDTO;
+import com.challenge.disney.disney.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
@@ -14,54 +14,54 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("characters")
-public class PersonajeController {
+public class CharacterController {
 
 
     //=== Instancia de Service ===
-    private PersonajeService personajeService;
-    public PersonajeController(@Autowired @Lazy PersonajeService personajeService) {
-        this.personajeService = personajeService;
+    private CharacterService characterService;
+    public CharacterController(@Autowired @Lazy CharacterService characterService) {
+        this.characterService = characterService;
     }
 
 
     //=== Post ===
     @PostMapping
-    public ResponseEntity<PersonajeDTO> save(@RequestBody PersonajeDTO personaje){
-        PersonajeDTO personajeGuardado = personajeService.save(personaje);
+    public ResponseEntity<CharacterDTO> save(@RequestBody CharacterDTO personaje){
+        CharacterDTO personajeGuardado = characterService.save(personaje);
         return ResponseEntity.status(HttpStatus.CREATED).body(personajeGuardado);
     }
 
     //=== Delete ===
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
-        personajeService.delete(id);
+        characterService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     //=== Put ===
     @PutMapping("/{id}")
-    public ResponseEntity<PersonajeDTO> editarPersonaje(@PathVariable Long id, @RequestBody PersonajeDTO edit){
-        PersonajeDTO editarPer = personajeService.editPersonaje(id, edit);
+    public ResponseEntity<CharacterDTO> editarPersonaje(@PathVariable Long id, @RequestBody CharacterDTO edit){
+        CharacterDTO editarPer = characterService.editPersonaje(id, edit);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(editarPer);
     }
 
     //=== Get ===
     @GetMapping("/all")
-    public ResponseEntity<List<PersonajeBasicDTO>> obtenerPersonajesBasic(){
-        List<PersonajeBasicDTO> personajesBasic = personajeService.traerPersonajesBasic();
+    public ResponseEntity<List<CharacterBasicDTO>> obtenerPersonajesBasic(){
+        List<CharacterBasicDTO> personajesBasic = characterService.traerPersonajesBasic();
         return ResponseEntity.status(HttpStatus.OK).body(personajesBasic);
 
     }
 
     //=== Get --- Filters ===
     @GetMapping
-    public ResponseEntity<List<PersonajeDTO>> detallesPorFiltros(
+    public ResponseEntity<List<CharacterDTO>> detallesPorFiltros(
             @RequestParam(required = false)String nombre,
             @RequestParam(required = false)Integer edad,
             @RequestParam(required = false)Set<Long>peliculas
             ){
-        List<PersonajeDTO> personajeDTOList = personajeService.traerPorFiltros(nombre, edad, peliculas);
-        return ResponseEntity.status(HttpStatus.OK).body(personajeDTOList);
+        List<CharacterDTO> characterDTOList = characterService.traerPorFiltros(nombre, edad, peliculas);
+        return ResponseEntity.status(HttpStatus.OK).body(characterDTOList);
     }
 
 

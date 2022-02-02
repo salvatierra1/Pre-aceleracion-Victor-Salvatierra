@@ -11,7 +11,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PeliculaFiltersDTO {
+public class MovieFiltersDTO {
 
     private String titulo;
 
@@ -21,7 +21,7 @@ public class PeliculaFiltersDTO {
 
     private String order;
 
-    public PeliculaFiltersDTO(String titulo, Set<Long> genero, String order, String date) {
+    public MovieFiltersDTO(String titulo, Set<Long> genero, String order, String date) {
         this.titulo = titulo;
         this.date = date;
         this.genero = genero;

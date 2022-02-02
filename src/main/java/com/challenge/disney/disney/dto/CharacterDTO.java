@@ -6,7 +6,7 @@ import java.util.List;
 
 @Setter
 @Getter
-public class PersonajeDTO {
+public class CharacterDTO {
 
     private Long id;
 
@@ -20,6 +20,6 @@ public class PersonajeDTO {
 
     private String historia;
 
-    private List<PeliculaDTO> peliculasDTO;
+    private List<MovieDTO> peliculasDTO;
 
 }

@@ -18,7 +18,7 @@ import java.util.List;
 @Setter
 @SQLDelete(sql = "UPDATE pelicula SET deleted = true WHERE id=?")
 @Where(clause = "deleted = false")
-public class PeliculaEntity {
+public class MovieEntity {
 
 
     //=== Atributos ===
@@ -52,10 +52,10 @@ public class PeliculaEntity {
             inverseJoinColumns = @JoinColumn(name = "personaje_id")
     )
 
-    private List<PersonajeEntity> personajes = new ArrayList<>();
+    private List<CharacterEntity> personajes = new ArrayList<>();
 
     //=== Tiene un Genero ==
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private GeneroEntity genero;
+    private GenderEntity genero;
 
 }
