@@ -1,9 +1,9 @@
 package com.challenge.disney.disney.repository.specifications;
 
 
-import com.challenge.disney.disney.dto.PersonajeFiltersDTO;
-import com.challenge.disney.disney.entity.PeliculaEntity;
-import com.challenge.disney.disney.entity.PersonajeEntity;
+import com.challenge.disney.disney.dto.CharacterFiltersDTO;
+import com.challenge.disney.disney.entity.MovieEntity;
+import com.challenge.disney.disney.entity.CharacterEntity;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -19,9 +19,9 @@ import java.util.List;
 import static org.springframework.util.StringUtils.hasLength;
 
 @Component
-public class PersonajeSpecification {
+public class CharacterSpecification {
 
-    public Specification<PersonajeEntity> getFilters(PersonajeFiltersDTO personajeFilters){
+    public Specification<CharacterEntity> getFilters(CharacterFiltersDTO personajeFilters){
 
         //=== Lambda ===
         return (root, query, criteriaBuilder) -> {
@@ -42,10 +42,17 @@ public class PersonajeSpecification {
             );
 
             //=== Movies ===
+<<<<<<< HEAD:src/main/java/com/challenge/disney/disney/repository/specifications/PersonajeSpecification.java
             if (!CollectionUtils.isEmpty(personajeFilters.getMovies())){
                 Join<PersonajeEntity, PeliculaEntity> join = root.join("movies", JoinType.INNER);
                 Expression<String> moviesId = join.get("id");
                 predicates.add(moviesId.in(personajeFilters.getMovies()));
+=======
+            if (!CollectionUtils.isEmpty(personajeFilters.getPeliculas())){
+                Join<CharacterEntity, MovieEntity> join = root.join("peliculas", JoinType.INNER);
+                Expression<String> peliculasId = join.get("id");
+                predicates.add(peliculasId.in(personajeFilters.getPeliculas()));
+>>>>>>> develop:src/main/java/com/challenge/disney/disney/repository/specifications/CharacterSpecification.java
             }
             query.distinct(true);
             query.orderBy(criteriaBuilder.asc(root.get("name")));

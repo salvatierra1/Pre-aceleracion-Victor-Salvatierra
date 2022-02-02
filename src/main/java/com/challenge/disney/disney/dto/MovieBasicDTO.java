@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class PeliculaBasicDTO {
+public class MovieBasicDTO {
 
     private String image;
 
