@@ -11,7 +11,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CharacterFiltersDTO {
+public class PersonajeFiltersDTO {
 
     private String nombre;
 
