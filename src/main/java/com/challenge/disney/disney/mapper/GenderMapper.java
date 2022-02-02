@@ -1,7 +1,7 @@
 package com.challenge.disney.disney.mapper;
 
-import com.challenge.disney.disney.dto.GeneroDTO;
-import com.challenge.disney.disney.entity.GeneroEntity;
+import com.challenge.disney.disney.dto.GenderDTO;
+import com.challenge.disney.disney.entity.GenderEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -10,25 +10,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class GeneroMapper {
+public class GenderMapper {
+
 
     //=== Mapper ===
-    private PeliculaMapper peliculaMapper;
-    public GeneroMapper(@Autowired @Lazy PeliculaMapper peliculaMapper) {
-        this.peliculaMapper = peliculaMapper;
+    private MovieMapper movieMapper;
+    public GenderMapper(@Autowired @Lazy MovieMapper movieMapper) {
+        this.movieMapper = movieMapper;
     }
 
     //=== DTO --> Entity
-    public GeneroEntity genderDTO2Entity(GeneroDTO dto) {
-        GeneroEntity genderEntity = new GeneroEntity();
+    public GenderEntity genderDTO2Entity(GenderDTO dto) {
+        GenderEntity genderEntity = new GenderEntity();
         genderEntity.setImage(dto.getImage());
         genderEntity.setName(dto.getName());
         return genderEntity;
     }
 
     //=== Entity --> DTO ===
-    public GeneroDTO genderEntity2Dto(GeneroEntity genderEntity) {
-        GeneroDTO genderDTO = new GeneroDTO();
+    public GenderDTO genderEntity2Dto(GenderEntity genderEntity) {
+        GenderDTO genderDTO = new GenderDTO();
         genderDTO.setId(genderEntity.getId());
         genderDTO.setName(genderEntity.getName());
         genderDTO.setImage(genderEntity.getImage());
@@ -36,9 +37,9 @@ public class GeneroMapper {
     }
 
     //=== ListEntity --> ListDTO ===
-    public List<GeneroDTO> genderEntityList2DTOList(List<GeneroEntity> savedGender) {
-        List<GeneroDTO> genderDTOList = new ArrayList<>();
-        for (GeneroEntity ent : savedGender){
+    public List<GenderDTO> genderEntityList2DTOList(List<GenderEntity> genderEntities) {
+        List<GenderDTO> genderDTOList = new ArrayList<>();
+        for (GenderEntity ent : genderEntities){
             genderDTOList.add(this.genderEntity2Dto(ent));
         }
         return genderDTOList;

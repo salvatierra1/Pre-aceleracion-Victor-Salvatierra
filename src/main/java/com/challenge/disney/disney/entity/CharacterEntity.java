@@ -15,7 +15,7 @@ import java.util.List;
 @Table (name = "characters")
 @SQLDelete(sql = "UPDATE characters SET deleted = true WHERE id=?")
 @Where(clause = "deleted = false")
-public class PersonajeEntity {
+public class CharacterEntity {
 
     //=== Atributos ===
     @Id
@@ -40,6 +40,7 @@ public class PersonajeEntity {
             mappedBy = "characters",
             fetch  = FetchType.LAZY
     )
-    private List<PeliculaEntity> movies = new ArrayList<>();
+
+    private List<MovieEntity> movies = new ArrayList<>();
 
 }

@@ -1,8 +1,8 @@
 package com.challenge.disney.disney.repository.specifications;
 
-import com.challenge.disney.disney.dto.PeliculaFiltersDTO;
-import com.challenge.disney.disney.entity.GeneroEntity;
-import com.challenge.disney.disney.entity.PeliculaEntity;
+import com.challenge.disney.disney.dto.MovieFiltersDTO;
+import com.challenge.disney.disney.entity.GenderEntity;
+import com.challenge.disney.disney.entity.MovieEntity;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
@@ -19,28 +19,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class PeliculaSpecification {
+public class MovieSpecification {
 
-    public Specification<PeliculaEntity> obtenerFiltro(PeliculaFiltersDTO peliculaFiltersDTO){
+    public Specification<MovieEntity> obtenerFiltro(MovieFiltersDTO movieFiltersDTO){
 
         //=== Lambda ===
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
 
             //=== Name ==
-            if (StringUtils.hasLength(peliculaFiltersDTO.getTitle())) {
+            if (StringUtils.hasLength(movieFiltersDTO.getTitle())) {
                 predicates.add(
                         criteriaBuilder.like(
                                 criteriaBuilder.lower(root.get("title")),
-                                "%" + peliculaFiltersDTO.getTitle().toLowerCase() + "%"
+                                "%" + movieFiltersDTO.getTitle().toLowerCase() + "%"
+
                         )
                 );
             }
 
             //=== Date ===
-            if (StringUtils.hasLength(peliculaFiltersDTO.getDate())){
+            if (StringUtils.hasLength(movieFiltersDTO.getDate())) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate date = LocalDate.parse(peliculaFiltersDTO.getDate(), formatter);
+                LocalDate date = LocalDate.parse(movieFiltersDTO.getDate(), formatter);
 
                 predicates.add(
                         criteriaBuilder.equal(root.get("dateCreation"), date)
@@ -48,23 +49,24 @@ public class PeliculaSpecification {
             }
 
             //=== Genre ===
-            if (!CollectionUtils.isEmpty(peliculaFiltersDTO.getGender())) {
-                Join<PeliculaEntity, GeneroEntity> join = root.join("genderEntity", JoinType.INNER);
+
+            if (!CollectionUtils.isEmpty(movieFiltersDTO.getGender())) {
+                Join<MovieEntity, GenderEntity> join = root.join("gender", JoinType.INNER);
                 Expression<String> genderId = join.get("id");
-                predicates.add(genderId.in(peliculaFiltersDTO.getGender()));
+                predicates.add(genderId.in(movieFiltersDTO.getGender()));
             }
 
-            query.distinct(true);
+                query.distinct(true);
 
-            //=== Order ===
-            String orderByField = "title";
-            query.orderBy(
-                    peliculaFiltersDTO.isASC() ?
-                            criteriaBuilder.asc(root.get(orderByField)) :
-                            criteriaBuilder.desc(root.get(orderByField))
-            );
-            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
-        };
+                //=== Order ===
+                String orderByField = "title";
+                query.orderBy(
+                        movieFiltersDTO.isASC() ?
+                                criteriaBuilder.asc(root.get(orderByField)) :
+                                criteriaBuilder.desc(root.get(orderByField))
+                );
+                return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+            };
+        }
 
     }
-}

@@ -9,7 +9,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "gender")
-public class GeneroEntity {
+public class GenderEntity {
+
 
     //=== Atributos ===
     @Id
