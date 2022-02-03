@@ -91,4 +91,5 @@ public class CharacterServiceImpl implements CharacterService {
         List<CharacterBasicDTO>resultado = characterMapper.characterBasicEntityList2DtoList(listaEntity);
         return resultado;
     }
+
 }
