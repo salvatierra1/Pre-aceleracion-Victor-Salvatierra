@@ -10,7 +10,6 @@ import com.challenge.disney.disney.repository.CharacterRepository;
 import com.challenge.disney.disney.repository.specifications.CharacterSpecification;
 import com.challenge.disney.disney.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +27,7 @@ public class CharacterServiceImpl implements CharacterService {
 
     //=== Specification ===
     private CharacterSpecification characterSpecification;
-    public CharacterServiceImpl(@Autowired @Lazy CharacterMapper characterMapper, @Autowired @Lazy CharacterRepository characterRepository, @Autowired CharacterSpecification characterSpecification) {
+    public CharacterServiceImpl(@Autowired CharacterMapper characterMapper, @Autowired  CharacterRepository characterRepository, @Autowired CharacterSpecification characterSpecification) {
         this.characterMapper = characterMapper;
         this.characterRepository = characterRepository;
         this.characterSpecification = characterSpecification;

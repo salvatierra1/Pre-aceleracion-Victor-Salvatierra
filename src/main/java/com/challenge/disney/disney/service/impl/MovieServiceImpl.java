@@ -11,7 +11,6 @@ import com.challenge.disney.disney.repository.MovieRepository;
 import com.challenge.disney.disney.repository.specifications.MovieSpecification;
 import com.challenge.disney.disney.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,7 +31,7 @@ public class MovieServiceImpl implements MovieService {
     private GenderRepository genderRepository;
 
     //=== Construtor ===
-    public MovieServiceImpl(@Autowired @Lazy MovieSpecification movieSpecification, @Autowired @Lazy MovieMapper movieMapper, @Autowired @Lazy MovieRepository movieRepository, @Autowired @Lazy GenderRepository genderRepository) {
+    public MovieServiceImpl(@Autowired  MovieSpecification movieSpecification, @Autowired MovieMapper movieMapper, @Autowired  MovieRepository movieRepository, @Autowired GenderRepository genderRepository) {
         this.movieSpecification = movieSpecification;
         this.movieMapper = movieMapper;
         this.movieRepository = movieRepository;

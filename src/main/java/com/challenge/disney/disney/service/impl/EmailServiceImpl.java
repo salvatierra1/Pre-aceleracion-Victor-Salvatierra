@@ -8,9 +8,6 @@ import com.sendgrid.SendGrid;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.core.env.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,7 +22,7 @@ public class EmailServiceImpl implements EmailService {
 
     private Environment env;
 
-    public EmailServiceImpl(@Autowired @Lazy Environment env) {
+    public EmailServiceImpl(@Autowired Environment env) {
         this.env = env;
     }
 

@@ -6,7 +6,6 @@ import com.challenge.disney.disney.mapper.GenderMapper;
 import com.challenge.disney.disney.repository.GenderRepository;
 import com.challenge.disney.disney.service.GenderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public class GenderServiceImpl implements GenderService {
     private GenderRepository genderRepository;
 
     //=== Construtor ===
-    public GenderServiceImpl(@Autowired @Lazy GenderMapper genderMapper, GenderRepository genderRepository) {
+    public GenderServiceImpl(@Autowired GenderMapper genderMapper, GenderRepository genderRepository) {
         this.genderMapper = genderMapper;
         this.genderRepository = genderRepository;
     }
