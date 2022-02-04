@@ -1,4 +1,5 @@
-{"info": {
+{
+	"info": {
 		"_postman_id": "fa7179f7-84aa-4703-8f4e-6a5df9b5fad4",
 		"name": "disney alkemy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -14,16 +15,10 @@
 							"name": "Crear personaje",
 							"request": {
 								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-					
-										"type": "text"
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"imagen\": \"jpg\",\r\n    \"nombre\": \"Bn\",\r\n    \"edad\": \"50\",\r\n    \"peso\": \"80\",\r\n    \"historia\": \"kgndjigk\"\r\n\r\n}",
+									"raw": "",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -48,12 +43,7 @@
 							"name": "Lista de personajes con peli",
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"url": {
 									"raw": "http://localhost:8080/characters",
 									"protocol": "http",
@@ -72,26 +62,26 @@
 							"name": "Editar personaje por ID",
 							"request": {
 								"method": "PUT",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": ""
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/personajes/4",
+									"raw": "http://localhost:8080/characters/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"personajes",
-										"4"
+										"characters",
+										"id"
 									]
 								}
 							},
@@ -101,14 +91,9 @@
 							"name": "Soft delete por ID",
 							"request": {
 								"method": "DELETE",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/characters/delete/5",
+									"raw": "http://localhost:8080/characters/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -116,8 +101,7 @@
 									"port": "8080",
 									"path": [
 										"characters",
-										"delete",
-										"5"
+										"id"
 									]
 								}
 							},
@@ -127,14 +111,9 @@
 							"name": "Lista con filtros",
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/characters?nombre=Batman",
+									"raw": "http://localhost:8080/characters",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -145,16 +124,17 @@
 									],
 									"query": [
 										{
-											"key": "nombre",
-											"value": "Batman"
-										},
-										{
-											"key": "edad",
+											"key": "name",
 											"value": "",
 											"disabled": true
 										},
 										{
-											"key": "peliculas",
+											"key": "age",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "movies",
 											"value": "",
 											"disabled": true
 										}
@@ -167,12 +147,7 @@
 							"name": "Personaje Basic",
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"url": {
 									"raw": "http://localhost:8080/characters/all",
 									"protocol": "http",
@@ -187,6 +162,26 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Personaje por id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/characters/id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"characters",
+										"id"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -197,15 +192,10 @@
 							"name": "Crear pelicula con per y gen",
 							"request": {
 								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"imagen\": \"bo\",\r\n    \"titulo\": \"Hulk\",\r\n    \"fechaCreacion\": \"2022-10-12\",\r\n    \"calificacion\": 3,\r\n    \"generoId\": 1, \r\n    \"personajesDTO\": [\r\n        {\r\n            \"imagen\": \"jpg\",\r\n            \"nombre\": \"Can\",\r\n            \"edad\": \"40\",\r\n            \"peso\": \"70\",\r\n            \"historia\": \"Volador\"\r\n            \r\n        },\r\n        {\r\n            \"imagen\": \"jpe\",\r\n            \"nombre\": \"Jhon\",\r\n            \"edad\": \"40\",\r\n            \"peso\": \"70\",\r\n            \"historia\": \"Dueño\"\r\n        }\r\n    ]\r\n}",
+									"raw": "",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -230,12 +220,7 @@
 							"name": "Lista de peliculas con personajes",
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"url": {
 									"raw": "http://localhost:8080/movies",
 									"protocol": "http",
@@ -256,14 +241,15 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/peliculas",
+									"raw": "http://localhost:8080/movies/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"peliculas"
+										"movies",
+										"id"
 									]
 								}
 							},
@@ -274,15 +260,25 @@
 							"request": {
 								"method": "PUT",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:8080/movies",
+									"raw": "http://localhost:8080/movies/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"movies"
+										"movies",
+										"id"
 									]
 								}
 							},
@@ -292,12 +288,7 @@
 							"name": "Lista con filtros",
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"url": {
 									"raw": "http://localhost:8080/movies",
 									"protocol": "http",
@@ -310,23 +301,23 @@
 									],
 									"query": [
 										{
-											"key": "idGenero",
-											"value": "2",
+											"key": "gender",
+											"value": "",
 											"disabled": true
 										},
 										{
 											"key": "order",
-											"value": "2022-11-12",
+											"value": "",
 											"disabled": true
 										},
 										{
-											"key": "titulo",
-											"value": "Huk",
+											"key": "title",
+											"value": "",
 											"disabled": true
 										},
 										{
 											"key": "date",
-											"value": "2022-10-12",
+											"value": "",
 											"disabled": true
 										}
 									]
@@ -353,6 +344,26 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Pelicula por id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/movies/id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"movies",
+										"id"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -363,15 +374,10 @@
 							"name": "Crear genero",
 							"request": {
 								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nombre\": \"acn\",\r\n    \"imagen\": \"jpg\"\r\n}",
+									"raw": "",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -396,7 +402,18 @@
 							"name": "Lista de Generos con peliculas",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/genres",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"genres"
+									]
+								}
 							},
 							"response": []
 						}
@@ -411,16 +428,10 @@
 					"name": "signup",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"disabled": true
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"victor@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -448,7 +459,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"victor@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
