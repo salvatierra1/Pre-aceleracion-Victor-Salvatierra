@@ -1,8 +1,10 @@
 package com.challenge.disney.disney.service.impl;
 
+import com.challenge.disney.disney.dto.CharacterDTO;
 import com.challenge.disney.disney.dto.MovieBasicDTO;
 import com.challenge.disney.disney.dto.MovieDTO;
 import com.challenge.disney.disney.dto.MovieFiltersDTO;
+import com.challenge.disney.disney.entity.CharacterEntity;
 import com.challenge.disney.disney.entity.MovieEntity;
 import com.challenge.disney.disney.exception.ParamNotFound;
 import com.challenge.disney.disney.mapper.MovieMapper;
@@ -43,8 +45,8 @@ public class MovieServiceImpl implements MovieService {
     public MovieDTO save(MovieDTO dto) {
         MovieEntity peliculaEnt = movieMapper.movieDTO2Entity(dto);
         MovieEntity peliculaSaved = movieRepository.save(peliculaEnt);
-        MovieDTO resultado = movieMapper.movieEntity2Dto(peliculaSaved, false);
-        return resultado;
+        MovieDTO result = movieMapper.movieEntity2Dto(peliculaSaved, false);
+        return result;
     }
 
     //=== Delete ===
@@ -55,7 +57,7 @@ public class MovieServiceImpl implements MovieService {
     //=== Put ===
     @Override
     public MovieDTO editMovie(Long id, MovieDTO edit) {
-       MovieEntity savedPelicula = this.getPeliculaEdit(id);
+       MovieEntity savedPelicula = this.getMovieEdit(id);
        savedPelicula.setImage(edit.getImage());
        savedPelicula.setTitle(edit.getTitle());
        savedPelicula.setQualification(edit.getQualification());
@@ -65,7 +67,7 @@ public class MovieServiceImpl implements MovieService {
        return savedDTO;
     }
 
-    private MovieEntity getPeliculaEdit(Long id) {
+    private MovieEntity getMovieEdit(Long id) {
         Optional<MovieEntity> peliculaEntity = movieRepository.findById(id);
         if (!peliculaEntity.isPresent()){
             throw  new ParamNotFound("id no valido");
@@ -78,16 +80,28 @@ public class MovieServiceImpl implements MovieService {
     public List<MovieDTO> getByFilters(String title, Set<Long> gender, String order, String date) {
         MovieFiltersDTO movieFiltersDTO = new MovieFiltersDTO(title, gender, order, date);
         List<MovieEntity> movieEntityList = movieRepository.findAll(movieSpecification.obtenerFiltro(movieFiltersDTO));
-        List<MovieDTO> resultado = movieMapper.movieEntityList2DtoList(movieEntityList, true);
-        return resultado;
+        List<MovieDTO> result = movieMapper.movieEntityList2DtoList(movieEntityList, true);
+        return result;
+    }
+
+    //=== Get ===
+    @Override
+    public MovieDTO getMovieDetails(Long id) {
+        Optional<MovieEntity> entity = this.movieRepository.findById(id);
+        if (!entity.isPresent()){
+            throw new ParamNotFound("id no valido");
+        }
+        MovieDTO result = this.movieMapper.movieEntity2Dto(entity.get(), true);
+        return result;
     }
 
     //=== Basic ===
     @Override
     public List<MovieBasicDTO> getMoviesBasic() {
-        List<MovieEntity>listaEntity = movieRepository.findAll();
-        List<MovieBasicDTO>resultado = movieMapper.movieBasicEntityList2DtoList(listaEntity);
-        return resultado;
+        List<MovieEntity>listEntity = movieRepository.findAll();
+        List<MovieBasicDTO>result = movieMapper.movieBasicEntityList2DtoList(listEntity);
+        return result;
     }
+
 
 }

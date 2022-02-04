@@ -47,14 +47,13 @@ public class CharacterMapper {
     }
 
     //=== ListEntity --> ListDto
-   public List<CharacterDTO> characterEntityList2DtoList(List<CharacterEntity> listaEntity, boolean b){
+   public List<CharacterDTO> characterEntityList2DtoList(List<CharacterEntity> listEntity, boolean b){
         List<CharacterDTO>dtoList = new ArrayList<>();
-        for(CharacterEntity ent : listaEntity){
+        for(CharacterEntity ent : listEntity){
             dtoList.add(this.characterEntity2Dto(ent, b));
         }
         return dtoList;
     }
-
 
     public List<CharacterEntity> toEntityList(List<CharacterDTO> characterDTO) {
         List<CharacterEntity> characterEntityList = new ArrayList<>();
@@ -80,4 +79,5 @@ public class CharacterMapper {
         dto.setImage(ent.getImage());
         return dto;
     }
+
 }

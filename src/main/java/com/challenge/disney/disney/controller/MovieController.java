@@ -1,5 +1,6 @@
 package com.challenge.disney.disney.controller;
 
+
 import com.challenge.disney.disney.dto.MovieBasicDTO;
 import com.challenge.disney.disney.dto.MovieDTO;
 import com.challenge.disney.disney.service.MovieService;
@@ -47,6 +48,13 @@ public class MovieController {
         List<MovieBasicDTO> movieBasic = movieService.getMoviesBasic();
         return ResponseEntity.status(HttpStatus.OK).body(movieBasic);
 
+    }
+
+    //=== Get ===
+    @GetMapping("/{id}")
+    public ResponseEntity<MovieDTO> getDetailsById(@PathVariable Long id){
+        MovieDTO movieDetails = movieService.getMovieDetails(id);
+        return ResponseEntity.status(HttpStatus.OK).body(movieDetails);
     }
 
     //=== Get --- Filters ===

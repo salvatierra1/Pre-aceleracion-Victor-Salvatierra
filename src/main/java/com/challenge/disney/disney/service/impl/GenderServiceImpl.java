@@ -36,10 +36,10 @@ public class GenderServiceImpl implements GenderService {
 
     //=== Get ===
     @Override
-    public List<GenderDTO> getGenders() {
-        List<GenderEntity> savedGeneros = genderRepository.findAll();
-        List<GenderDTO> resultado = genderMapper.genderEntityList2DTOList(savedGeneros);
-        return  resultado;
+    public List<GenderDTO> getGender() {
+        List<GenderEntity> savedGender = genderRepository.findAll();
+        List<GenderDTO> result = genderMapper.genderEntityList2DTOList(savedGender);
+        return  result;
     }
 
 }

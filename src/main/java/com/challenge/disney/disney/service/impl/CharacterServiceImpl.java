@@ -42,10 +42,20 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     //=== Get ===
-    public List<CharacterDTO> traerPersonajes(){
-        List<CharacterEntity>listaEntity = characterRepository.findAll();
-        List<CharacterDTO>resultado = characterMapper.characterEntityList2DtoList(listaEntity, false);
-        return resultado;
+    public List<CharacterDTO> getCharacter(){
+        List<CharacterEntity>listEntity = characterRepository.findAll();
+        List<CharacterDTO>result = characterMapper.characterEntityList2DtoList(listEntity, false);
+        return result;
+    }
+
+    @Override
+    public CharacterDTO getCharacterDetails(Long id) {
+        Optional<CharacterEntity> entity = this.characterRepository.findById(id);
+        if (!entity.isPresent()){
+            throw new ParamNotFound("id no valido");
+        }
+        CharacterDTO result = this.characterMapper.characterEntity2Dto(entity.get(), true);
+        return result;
     }
 
     //=== Delete ===
@@ -56,40 +66,40 @@ public class CharacterServiceImpl implements CharacterService {
     //=== Put ===
     @Override
     public CharacterDTO editCharacter(Long id, CharacterDTO edit) {
-        CharacterEntity savedPersonaje = this.personajeEdit(id);
-        savedPersonaje.setName(edit.getName());
-        savedPersonaje.setWeight(edit.getWeight());
-        savedPersonaje.setImage(edit.getImage());
-        savedPersonaje.setAge(edit.getAge());
-        savedPersonaje.setHistory(edit.getHistory());
-        CharacterEntity editPersonaje = characterRepository.save(savedPersonaje);
+        CharacterEntity savedCharacter = this.getCharacterEdit(id);
+        savedCharacter.setName(edit.getName());
+        savedCharacter.setWeight(edit.getWeight());
+        savedCharacter.setImage(edit.getImage());
+        savedCharacter.setAge(edit.getAge());
+        savedCharacter.setHistory(edit.getHistory());
+        CharacterEntity editPersonaje = characterRepository.save(savedCharacter);
         CharacterDTO savedDTO = characterMapper.characterEntity2Dto(editPersonaje, false);
         return savedDTO;
     }
 
-    CharacterEntity personajeEdit(Long id) {
-        Optional<CharacterEntity>personajeEntity = characterRepository.findById(id);
-        if (!personajeEntity.isPresent()){
+    CharacterEntity getCharacterEdit(Long id) {
+        Optional<CharacterEntity>characterEntity = characterRepository.findById(id);
+        if (!characterEntity.isPresent()){
             throw  new ParamNotFound("id no valido");
         }
-        return personajeEntity.get();
+        return characterEntity.get();
     }
-
 
     //=== Filters ===
     @Override
     public List<CharacterDTO> getByFilters(String name, Integer age, Set<Long> movies) {
         CharacterFiltersDTO filtersDTO = new CharacterFiltersDTO(name, age, movies);
         List<CharacterEntity> entityList = this.characterRepository.findAll(this.characterSpecification.getFilters(filtersDTO));
-        List<CharacterDTO> resultadoDTO = this.characterMapper.characterEntityList2DtoList(entityList, true);
-        return resultadoDTO;
+        List<CharacterDTO> resultDTO = this.characterMapper.characterEntityList2DtoList(entityList, true);
+        return resultDTO;
     }
 
+    //=== Basic ===
     @Override
     public List<CharacterBasicDTO> getCharacterBasic() {
-        List<CharacterEntity>listaEntity = characterRepository.findAll();
-        List<CharacterBasicDTO>resultado = characterMapper.characterBasicEntityList2DtoList(listaEntity);
-        return resultado;
+        List<CharacterEntity>listEntity = characterRepository.findAll();
+        List<CharacterBasicDTO>result = characterMapper.characterBasicEntityList2DtoList(listEntity);
+        return result;
     }
 
 }

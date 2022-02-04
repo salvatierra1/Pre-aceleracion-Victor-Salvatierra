@@ -17,4 +17,7 @@ public interface MovieService {
     List<MovieDTO> getByFilters(String title, Set<Long> gender, String order, String date);
 
     List<MovieBasicDTO> getMoviesBasic();
+
+    MovieDTO getMovieDetails(Long id);
+
 }

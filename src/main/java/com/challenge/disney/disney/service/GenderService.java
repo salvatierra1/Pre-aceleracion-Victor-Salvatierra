@@ -9,6 +9,6 @@ public interface GenderService {
 
     GenderDTO save(GenderDTO dto);
 
-    List<GenderDTO> getGenders();
+    List<GenderDTO> getGender();
 
 }

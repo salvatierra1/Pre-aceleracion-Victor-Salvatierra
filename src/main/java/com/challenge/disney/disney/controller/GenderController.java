@@ -30,7 +30,7 @@ public class GenderController {
     //=== Get ===
     @GetMapping()
     public ResponseEntity<List<GenderDTO>> getGenders(){
-        List<GenderDTO> genderDTOList = genderService.getGenders();
+        List<GenderDTO> genderDTOList = genderService.getGender();
         return ResponseEntity.status(HttpStatus.OK).body(genderDTOList);
     }
 

@@ -22,7 +22,6 @@ public class CharacterController {
         this.characterService = characterService;
     }
 
-
     //=== Post ===
     @PostMapping
     public ResponseEntity<CharacterDTO> save(@RequestBody CharacterDTO character){
@@ -52,6 +51,13 @@ public class CharacterController {
 
     }
 
+    //=== Get ===
+    @GetMapping("/{id}")
+    public ResponseEntity<CharacterDTO> getDetailsById(@PathVariable Long id){
+        CharacterDTO charDetails = characterService.getCharacterDetails(id);
+        return ResponseEntity.status(HttpStatus.OK).body(charDetails);
+    }
+
     //=== Get --- Filters ===
     @GetMapping
     public ResponseEntity<List<CharacterDTO>> detailsByFilters(
@@ -62,7 +68,5 @@ public class CharacterController {
         List<CharacterDTO> characterDTOList = characterService.getByFilters(name, age, movies);
         return ResponseEntity.status(HttpStatus.OK).body(characterDTOList);
     }
-
-
 
 }
